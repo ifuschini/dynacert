@@ -1,14 +1,26 @@
 # ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/builder/public/images/logo.png)
 
 ## Proposal
+
 The purpose of this project is to allow, starting from a pre-existing paper form or better pdf, to create an online form and digitally sign it, and to create a pdf with the compiled data.
 
 ## Prerequisite
 
 For this project, the following is required as a prerequisite:
 
-1) node 12 or higher (https://nodejs.org)
+1) node 12 or higher (https://nodejs.org
+
 2) docker 20.10.x or higher (https://www.docker.com/)
+
+or
+
+1) node 12 or higher (https://nodejs.org)
+
+2) apache 2.x or higher (https://httpd.apache.org/)
+
+3) php 7.4.x or higher (https://php.net)
+
+
 
 ## Arhitecture
 
