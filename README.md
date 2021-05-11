@@ -87,3 +87,7 @@ npm run builddocker
 
 http://localhost/viewer
 
+## License
+
+Dynacert is available under the MIT license.
+
