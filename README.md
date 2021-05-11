@@ -68,7 +68,7 @@ npm run builddocker
 
 #### URL 
 
-http:/localhost/builder
+http://localhost/builder
 
 ### dynacert viewer
 
