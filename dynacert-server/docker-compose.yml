@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+        php-apache:
+                container_name:
+                        webserver
+                image:
+                        webserver
+                environment: 
+                        - DOMAIN=CLUSTER
+                build:
+                        context: ./php-apache
+                ports:
+                        - 80:80
+                volumes:
+                        - ./html:/var/www/html
+                        - ./conf:/var/www/conf
+                links:
+                        - 'mariadb'
+                restart:
+                        always
+        mariadb:
+                container_name:
+                        db
+                image:
+                        db
+                ports:
+                        - 3306:3306
+                build:
+                        context: ./mariadb
+                volumes:
+                        - ./mariadb_data:/var/lib/mysql
+        
