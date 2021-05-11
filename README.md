@@ -1,4 +1,4 @@
-# Dynacert
+# ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/builder/public/images/logo.png)
 
 ## Proposal
 The purpose of this project is to allow, starting from a pre-existing paper form or better pdf, to create an online form and digitally sign it, and to create a pdf with the compiled data.
@@ -63,6 +63,7 @@ Run this commands below:
 
 ```
 cd builder
+npm install
 npm run builddocker
 ```
 
@@ -80,6 +81,7 @@ Run this commands below:
 
 ```
 cd viewer
+npm install
 npm run builddocker
 ```
 
@@ -89,5 +91,5 @@ http://localhost/viewer
 
 ## License
 
-Dynacert is available under the MIT license.
+Dynacert	 is available under the MIT license.
 
