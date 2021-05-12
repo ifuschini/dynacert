@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-button block v-b-toggle.accordion-10 variant="info" size="sm" style="margin-top:10px">Privacy information
-<br/>(cliccami per leggere)
+<br/>( {{language[config.currentLanguage].clickMePrivacy}})
 </b-button>
         <b-collapse id="accordion-10"  accordion="gdpr-accordion" role="tabpanel">
         <b-card-body>

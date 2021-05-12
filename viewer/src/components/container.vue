@@ -14,7 +14,7 @@
        </div>
 
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2 footer" style="">
-        <strong class="mr-auto">Double77 srl - DynaCer</strong>
+        <strong class="mr-auto">Double77 srl - DynaCert</strong>
         <span style="float:right">v{{config.version}}</span>
        </div>
       </template>

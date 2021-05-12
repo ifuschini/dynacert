@@ -1,9 +1,8 @@
 <template>
   <div>
             <div role="group" class="form-group">
-                <label >Categoria</label>
                 <select  v-model="categorySelected" class="form-control" v-on:change="getSurveys()">
-                    <option :value="null"> -- selezionare una categoria --</option>
+                    <option :value="null"> {{language[config.currentLanguage].selectCategory}}</option>
                     <option v-for="(category,index) in arrayCategory" v-bind:key="index" :value="category.ID">{{category.name}}</option>
                 </select>   
             </div> 

@@ -4,4 +4,9 @@ export default {
     errorIsMandatory: 'Il campo è obbligatorio',
     signBtn: 'Firma',
     errorIsNotEmail: 'Il campo non è una email',
+    selectCategory: '-- seleziona una categoria --',
+    thankYou: 'Grazie!',
+    pdfCreated: 'Il tuo documento è stato creato, ora puoi scaricarlo',
+    clickMePrivacy: 'ciccami per leggere',
+    cancel: 'Cancella',
 }

@@ -12,14 +12,14 @@
                             <img :src="mobileSignUrl" class="imageSignMobile" />
                         </div>
                         <br></br>
-                        <b-button  @click="clear" style="margin-right:20px;min-width:120px;margin-top:10px;margin-bottom:5px;">Cancella</b-button>                                            
+                        <b-button  @click="clear" style="margin-right:20px;min-width:120px;margin-top:10px;margin-bottom:5px;">{{language[config.currentLanguage].cancel}}</b-button>                                            
                         <b-button v-on:click="goNextSign()"   variant="success" style="min-width:120px;margin-top:10px;margin-bottom:5px;" :disabled='disableSignBtn'>{{btnLabel}}</b-button><br/>
                         <b-alert v-if="showSignAlert" variant="danger" class="alertMessage" show>{{alertMessage}}</b-alert>
                     </b-collapse>
                     </div>
                 <b-collapse id="collapse-4" v-model="completeVisible" class="mt-2">
-                <h3>Grazie!</h3><br/>
-                <h3>Il documento è stato inviato correttamente</h3>
+                <h3>{{language[config.currentLanguage].thankYou}}</h3><br/>
+                <h3>{{language[config.currentLanguage].pdfCreated}}</h3>
                  <b-button v-on:click="downloadPdf()" style="margin-bottom:10px" size="sm">Download pdf<b-icon icon="file-earmark-arrow-down"></b-icon></b-button><br/>
 
                 </b-collapse>
