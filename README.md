@@ -68,6 +68,7 @@ cd dynacert-server
 Dynacert builder is the administration component that allows:
 
 1) build the form
+
 [![Watch the video](https://img.youtube.com/vi/K1hvEyy9INo/0.jpg)](https://youtu.be/K1hvEyy9INo)
 
 2) Place the fields on the page
