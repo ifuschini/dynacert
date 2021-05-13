@@ -23,9 +23,6 @@
         <li>
             <a href="#" @click="showAllViewer(data)">Survey all</a>
         </li>
-        <li>
-           id: {{listSurveys[data]}}
-        </li>
     </vue-context>
 
     <b-col v-if="survey != null">
@@ -61,14 +58,11 @@ export default {
     showSingleViewer(index) {
             console.log(index)
             console.log(this.listSurveys[index])
-            //document.location.href='#/singlepage/' + this.listSurveys[index]
             this.$router.push({ name: 'SurveySinglePage', params: {id: this.listSurveys[index].ID}})
-            //setTimeout(function () { this.getMod12(this.tesserati[index].codiceFiscale)}.bind(this), 100)
     },
     showAllViewer(index) {
             console.log(index)
-            this.$router.push({ name: 'SurveyAll' ,params: {id: this.listSurveys[index]}})
-            //setTimeout(function () { this.getMod12(this.tesserati[index].codiceFiscale)}.bind(this), 100)
+            this.$router.push({ name: 'SurveyAll' ,params: {id: this.listSurveys[index].ID}})
     },
     getSurveys () {
       serverBus.$emit('showLoader',true)

@@ -43,10 +43,11 @@ export default {
     methods: {
         getSurvey() {
             serverBus.$emit('showLoader',true)
+            console.log("---->"  + this.$route.params.id)
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.getSurvey + "/",{
                 params: {
-                    name: this.$route.params.id
+                    id: this.$route.params.id
                 }
                 }
                 )
