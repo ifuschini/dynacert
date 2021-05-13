@@ -10,8 +10,7 @@
     $session_time = 10000;
     $tokenLength=32;
     $reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
-    $reCaptchaSecret = '6LcRZgcaAAAAALZIQ0evjrnk-thz8MLRsr3GTjYR';
-    $reCaptchaSecretV3 = '6LeaSDcaAAAAAA8rfJYWAkx86F_rCCvjrvL13-jJ';
+    $reCaptchaSecretV3 = '<secret key>';
     $expiredLicenseDate = "2022-02-01";
     //$idTemplate= 'VFJJQUdFIFBFUiBDT1ZJRDE5IElOIFBSRVNFTlpBIHByZXNzbyBGSVNBTCBGaXNpb3RlcmFwaWE=';
     $idTemplate= 'dHJpYWdlIHJlY292ZXJ5Mg==';

@@ -22,7 +22,7 @@ Vue.prototype.config = {
   version: "1.0.3",
   productName: "dynaCer",
   timeCheck: 5000,
-  recaptchaId: '6LcRZgcaAAAAAJpQYJFC1jF6wA38raGZuJ9VIiFh',
+  recaptchaId: '<id>',
   //serviceBaseUrl: "https://localhost/dynacert/viewer/",
   serviceBaseUrl: "http://localhost/viewer/",
   //serviceBaseUrl: "",
