@@ -18,7 +18,7 @@ Vue.prototype.config = {
   version: "0.0.1",
   productName: "dynamicCert",
   timeCheck: 5000,
-  recaptchaId: '6Le778gSAAAAAEKpH5hjdySlQiRlCsyYojKJ9uZq',
+  recaptchaId: '<captha id>',
   serviceBaseUrl: "http://localhost/builder/",
   //serviceBaseUrl:'',
   url: {

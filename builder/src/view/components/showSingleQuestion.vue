@@ -9,9 +9,6 @@
                         <span v-if="question.maxValue!=null" style="float:center">
                             Max: {{question.maxValue}}  
                          </span>
-                        <!--span v-on:click="survey.splice(index,1)" style="float:right">
-                            <b-icon icon="trash-fill"/>
-                        </span-->
                         <span v-if="question.isMandatory==true" style="float:right">
                             {{language[config.currentLanguage].mandatory}}  
                         </span>

@@ -3,7 +3,6 @@ include("./include/include.php");
 header('Content-Type: application/json');
 $conn = mysqli_connect($dbhost, $dbusr, $dbpwd, $dbname);
 $idSurvey=$_GET['id'];
-$sql = "SELECT title,config FROM `survey` WHERE ID=" . $idSurvey;
 $sql = "SELECT t1.map,t2.images,t3.title,t3.config FROM surveyMap t1, surveyPdfImage t2, survey t3 WHERE t1.surveyId=" . $idSurvey ." AND t2.surveyId=" . $idSurvey . " AND t3.ID=" . $idSurvey;
 $title = NULL;
 $survey = array();

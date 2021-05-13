@@ -1,21 +1,13 @@
 <template>
     <div class="bodyUrc">
-  		<div class="loaderUrc">
-			<span>D</span>
-			<span>Y</span>
-			<span>N</span>
-			<span>A</span>
-			<span>C</span>
-			<span>E</span>
-			<span>R</span>
-			<span>T</span>
+		<div class="loader">
+		<span>Loading...</span>
 		</div>
     </div>
 </template>
 
 <script>
 export default {
-	name: "Loader",
 
 }
 </script>
@@ -36,54 +28,58 @@ export default {
     opacity: 0.9;
 }
 
-.loaderUrc{   
-	-webkit-perspective:700px;
-	perspective: 700px;
+.loader {
+    width: 10em;
+    height: 10em;
+    font-size: 25px;
+    box-sizing: border-box;
+    border-top: 0.3em solid hotpink;
+    border-radius: 50%;
+    position: relative;
+    animation: rotating 2s ease-in-out infinite;
+    --direction: 1;
 }
 
-.loaderUrc>span{
-	font-size: 150px;
-    color:rgb(29, 14, 236);
-	font-family: "franklin gothic medium",sans-serif;
-	display: inline-block;
-	animation:flip 2.0s infinite linear;
-	transform-origin:0 70%;
-	transform-style:preserve-3d;
-	-webkit-transform-style:preserve-3d;
+.loader::before,
+.loader::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    box-sizing: border-box;
+    top: -0.2em;
 }
 
-@keyframes flip{
-	35%{
-		transform: rotateX(360deg);
-	}
-	100%{
-		transform: rotatex(360deg);
-	}
+.loader::before {
+    border-top: 0.3em solid dodgerblue;
+    transform: rotate(120deg);
 }
 
-
-.loaderUrc>span:nth-child(even){
-	color:rgb(133, 5, 5);
-
+.loader::after {
+    border-top: 0.3em solid gold;
+    transform: rotate(240deg);
 }
 
-.loaderUrc>span:nth-child(2){
-	animation-delay: 0.3s;
+.loader span {
+    position: absolute;
+    color: white;
+    width: inherit;
+    height: inherit;
+    text-align: center;
+    line-height: 10em;
+    font-family: sans-serif;
+    animation: rotating 2s linear infinite;
+    --direction: -1;
 }
 
-.loaderUrc>span:nth-child(4){
-	animation-delay: 0.9s;
-}
-.loaderUrc>span:nth-child(5){
-	animation-delay: 1.2s;
-}
-.loaderUrc>span:nth-child(6){
-	animation-delay: 1.5s;
-}
-.loaderUrc>span:nth-child(7){
-	animation-delay: 1.8s;
-}
-.loaderUrc>span:nth-child(8){
-	animation-delay: 2.1s;
+@keyframes rotating {
+    50% {
+        transform: rotate(calc(180deg * var(--direction)));
+    }
+
+    100% {
+        transform: rotate(calc(360deg * var(--direction)));
+    }
 }
 </style>

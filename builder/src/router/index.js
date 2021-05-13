@@ -7,6 +7,8 @@ import surveyMapper from "../view/surveyMapper.vue"
 import surveyCategory from "../view/surveyCategory.vue"
 import singlePage from "../view/viewer/singlePage"
 import allSurvey from "../view/viewer/allSurvey"
+import page404 from "../view/pages/404";
+
 
 
 Vue.use(Router);
@@ -66,13 +68,18 @@ const router = new Router({
                     path: "all/:id",
                     name: "SurveyAll",
                     component: allSurvey,
-                },            
+                }, 
+                {
+                    path: "404",
+                    name: "Page404",
+                    component: page404,
+                },
             ],
         },
-        /*{
+        {
             path: "*",
             redirect: "/pages/404",
-        },*/
+        },
     ],
 });
 
