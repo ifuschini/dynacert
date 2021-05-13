@@ -45,7 +45,7 @@ It is made up of two containers:
 To launch the server environment and configure it correctly is very simple, just run these two commands:
 
 ```
-cd dynacert-server
+cd dynacert-server.sh
 docker-compose -p dynacert up --build 
 ```
 
