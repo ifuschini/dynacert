@@ -12,9 +12,6 @@
     $reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
     $reCaptchaSecretV3 = '<secret key>';
     $expiredLicenseDate = "2022-02-01";
-    //$idTemplate= 'VFJJQUdFIFBFUiBDT1ZJRDE5IElOIFBSRVNFTlpBIHByZXNzbyBGSVNBTCBGaXNpb3RlcmFwaWE=';
-    $idTemplate= 'dHJpYWdlIHJlY292ZXJ5Mg==';
-    $idSurvey= '8';
     $costumer= "";
     $emailCostumer= "";
     $configPdf='config.json';
