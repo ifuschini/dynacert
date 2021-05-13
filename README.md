@@ -96,6 +96,9 @@ http://localhost/builder
 
 is the part reserved for the user to fill in the form, his signature and download the pdf with the compiled data.
 
+[![Watch the video](https://img.youtube.com/vi/2KFHBN3spz0/0.jpg)](https://youtu.be/2KFHBN3spz0)
+
+
 #### Installation
 
 Run this commands below:
