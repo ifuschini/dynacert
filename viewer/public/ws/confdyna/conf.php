@@ -15,8 +15,8 @@
     //$idTemplate= 'VFJJQUdFIFBFUiBDT1ZJRDE5IElOIFBSRVNFTlpBIHByZXNzbyBGSVNBTCBGaXNpb3RlcmFwaWE=';
     $idTemplate= 'dHJpYWdlIHJlY292ZXJ5Mg==';
     $idSurvey= '8';
-    $costumer= "FISAL S.r.l.";
-    $emailCostumer= "studio@fisal.eu";
+    $costumer= "";
+    $emailCostumer= "";
     $configPdf='config.json';
     $imagePath='./confdyna/images/';
     $iconsPath = './confdyna/icons/';
