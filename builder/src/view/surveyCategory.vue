@@ -34,7 +34,7 @@
                     <td>{{category.ID}}</td>
                     <td>
                         <span v-if="idSelected != category.ID" @dblclick="modify(category.ID,category.name)">{{category.name}}</span>
-                        <b-form-input size="sm" v-if="idSelected == category.ID" v-model="categoryToModify" v-on:keyup.enter="modifyCategory()" />
+                        <b-form-input size="sm" v-if="idSelected == category.ID" v-model="categoryToModify" v-on:keyup.enter="modifyCategory()" v-on:keyup.esc="idSelected = null"/>
                     </td>
                     <td><b-button size="sm" variant="danger" v-on:click="deleteCategory(category.ID)">delete</b-button></td>
                 </tr>

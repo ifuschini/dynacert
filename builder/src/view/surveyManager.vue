@@ -1,7 +1,7 @@
 <template>   
 <div> 
         <b-tabs ref="tabs" >
-        <b-tab  title="Survey Builder" @click.capture="changeTab(0)" active>
+        <b-tab  title="Form Builder" @click.capture="changeTab(0)" active>
             <b-row>
             <b-col sm="6">
                 <surveyMaker

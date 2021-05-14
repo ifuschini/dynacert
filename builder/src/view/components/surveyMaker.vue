@@ -4,10 +4,11 @@
             <b-col >
                 <b-card>
                     <template #header>
-                                <strong>Load Survey saved</strong> 
+                                <strong>Load Form saved</strong> 
                     </template>
                     <b-card-text>
                             <select v-on:change="getSurvey(fileSelected)" v-model="fileSelected" class="form-control">
+                                <option  :value="null">---- Select a form ----</option>
                                 <option v-for="(survey,index) in listSurveys" v-bind:key="index" :value="index">{{survey.title}}({{survey.ID}})</option>
                             </select>
 
@@ -15,7 +16,7 @@
                 </b-card>
                 <b-card>
                     <template #header>
-                                <strong>Create Survey</strong> 
+                                <strong>Create Form</strong> 
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="IDSelected != null" v-on:click="submitlocalSurvey('update')"><b-icon icon="check-circle"/> Update Survey</b-button>
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="success" v-on:click="submitlocalSurvey('new')"><b-icon icon="check-circle"/> Submit new Survey</b-button>
                     </template>
@@ -23,8 +24,8 @@
                                 <b-row>
                                     <b-col>
                                             <b-input
-                                            label="Name of survey"
-                                            placeholder="Form"
+                                            label="Name of form"
+                                            placeholder="name of form"
                                             v-model="surveyTitle"
                                             />
                                     </b-col>
@@ -44,6 +45,7 @@
                                             <div role="group" class="form-group">
                                                 <label > Category </label>
                                                 <select  v-model="categorySelected" class="form-control">
+                                                <option :value="null">-- select a category --</option>
                                                 <option v-for="(category,index) in arrayCategory" v-bind:key="index" :value="category.ID">{{category.name}}</option>
                                             </select>
                                                 
@@ -70,7 +72,7 @@
                             <b-col>
                                 <strong>Insert new "{{typeSelected}}"</strong> 
                             </b-col>
-                            <b-col v-if="objectFeature.typeOfContent==true">
+                            <!--b-col v-if="objectFeature.typeOfContent==true">
                             Type Of Content
                                 <b-select style="float:right"
                                 v-model="typeOfContent" 
@@ -78,7 +80,7 @@
                                 size="sm" 
                                 class="mt-3"
                                 />
-                            </b-col>
+                            </b-col-->
                             </b-row>
                     </template>
                         <b-card-text>

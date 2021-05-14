@@ -19,7 +19,7 @@
             </b-col>
             <b-col>
         <select class="form-control" style="margin-bottom:5px;" @change="getSurvey($event)" >
-            <option value="null">--- select a survey --- </option>
+            <option value="null">--- select a form --- </option>
             <option v-for="(survey,index) in listSurveys" v-bind:key="index" :value="survey.ID">{{survey.title}}</option>
         </select>
             </b-col>
