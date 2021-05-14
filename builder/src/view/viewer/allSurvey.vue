@@ -9,7 +9,7 @@
             <b-alert show variant="danger" v-if="alertSurveyMessage[index].length!=0">{{alertSurveyMessage[index]}}</b-alert>
     </div>
         {{responses}}
-            <b-button variant="success" v-on:click="saveData()" style="float:right;margin-top:10px">Send data</b-button>            
+
     
 </div>
     
