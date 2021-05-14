@@ -333,6 +333,7 @@ export default {
             this.typeSelected=this.typeOfField[0]
             this.changeType()
             this.questionTitle=''
+            this.surveyTitle=''
             this.optionsRowObject=[]
             this.optionsColObject=[]
             this.isMandatory=false
@@ -372,6 +373,11 @@ export default {
 
         getSurvey(index) {
         serverBus.$emit('showLoader',true)
+        if(index==null) {
+            this.init()
+            serverBus.$emit('showLoader',false)
+            return false
+        }
         console.log(index)
         axios
             .get(this.config.serviceBaseUrl + this.config.url.getSurvey ,{

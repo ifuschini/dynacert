@@ -8,9 +8,9 @@
           <br/><br/>
                 <template>
        <div class="d-flex  align-items-center px-3 py-2 footer-cookie" v-if="accepted==false">
-        <strong class="mr-auto">Noi utilizziamo cookie o tecnologie simili come specificato nella <u>
+        <strong class="mr-auto">We use cookies or similar technologies as specified in the <u>
         <span v-on:click="cookiePolicy()">cookie policy</span></u></strong>
-        <b-button style="float:right!important" size="sm" variant="success" v-on:click="acceptedAction()">Accetto</b-button>
+        <b-button style="float:right!important" size="sm" variant="success" v-on:click="acceptedAction()">Accept</b-button>
        </div>
 
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2 footer" style="">

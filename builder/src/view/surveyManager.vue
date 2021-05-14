@@ -124,9 +124,14 @@ export default {
         },
         saveSurvey(surveyTitle,IDSurvey,categorySelected) {
             console.log('saveSurvey')
+            
             if (this.survey.length==0) {
                 this.alertSurveyMessage='Attention! the survey can not be empty'
                 return false;
+            }
+            if (this.config.demo==true) {
+                console.log('is a demo')
+                return false
             }
             serverBus.$emit('showLoader',true)
             axios

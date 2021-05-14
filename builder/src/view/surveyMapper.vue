@@ -58,6 +58,10 @@ export default {
                 this.alertSurveyMessage='Attention! the survey can not be empty'
                 return false;
             }
+            if (this.config.demo==true) {
+                alert('is a demo')
+                return false
+            }
             serverBus.$emit('showLoader',true)
             axios
                 .post(this.config.serviceBaseUrl + this.config.url.saveSurveyMap,{

@@ -62,6 +62,10 @@ export default {
     },
     methods: {
         modifyCategory() {
+                if (this.config.demo==true) {
+                    alert('is a demo')
+                    return false
+                }
                 axios
                     .post(this.config.serviceBaseUrl + this.config.url.modifyCategory,{
                         id: this.idSelected,
@@ -89,6 +93,10 @@ export default {
         },
 
         deleteCategory(id) {
+                if (this.config.demo==true) {
+                    alert('is a demo')
+                    return false
+                }
                 if (confirm('Do you want to delete this item ?') == false) return false
                 axios
                     .post(this.config.serviceBaseUrl + this.config.url.deleteCategory,{
@@ -124,6 +132,10 @@ export default {
             })
         },
         saveCategory() {
+            if (this.config.demo==true) {
+                    alert('is a demo')
+                    return false
+            }
             if (this.newcategory==null) {
                 alert('new category is empty' + this.newcategory)
                 return false
