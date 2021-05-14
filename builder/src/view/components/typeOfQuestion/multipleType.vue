@@ -19,10 +19,11 @@
                 <b-tr  v-for="(roption, roptionIndex) in question.rowOption" v-bind:key="roptionIndex">
                     <b-td>{{roption}}</b-td>
                     <b-td v-for="(coption, coptionIndex) in question.colOption" v-bind:key="coptionIndex">
-                        <label class="container">
-                            <input type="radio" :name="question.id + '-' + roptionIndex" v-on:click="checked(roptionIndex,coptionIndex)"/>
-                            <span class="checkmark"></span>
-                        </label>
+                      <div class="custom-control custom-radio b-custom-control-lg">
+                            <input type="radio" :name="question.id + '-' + roptionIndex" class="custom-control-input" v-on:click="checked(roptionIndex,coptionIndex)" :id="'__BVID__' + question.id + '' + roptionIndex + '' + coptionIndex"/>
+                            <label class="custom-control-label" :for="'__BVID__' + question.id + '' + roptionIndex + '' + coptionIndex">
+                            </label>
+                      </div>
                     </b-td>
                 </b-tr>
             </b-table-simple>
@@ -53,47 +54,7 @@
 }
 
 /* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0%;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-}
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-}
 table, td, th {  
   text-align: center;
 }
