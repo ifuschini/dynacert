@@ -47,12 +47,15 @@ export default {
     }
   },
   created() {
+    this.$gtag.event('dynacert-builder', { method: 'viewer' })
+
     this.getSurveys()
   },
     watch: {
         $route() {
           this.getSurveys()
-        },
+            this.$gtag.event('dynacert-builder', { method: 'viewer' })
+        }
     },  
   methods: {
     showSingleViewer(index) {

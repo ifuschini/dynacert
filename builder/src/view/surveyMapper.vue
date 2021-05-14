@@ -89,6 +89,14 @@ export default {
 
 
     },
+    watch: {
+        $route() {
+            this.$gtag.event('dynacert-builder', { method: 'maps' })
+        }
+    },  
+    created() {
+        this.$gtag.event('dynacert-builder', { method: 'maps' })
+    },
     components: {
         surveyMapperTool,
         JsonEditor,

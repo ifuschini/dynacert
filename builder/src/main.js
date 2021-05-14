@@ -45,7 +45,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueGtag, {
-  config: { id: "G-5H9Q47P292" }
+  config: { id: "UA-1171092-8" }
 });
 Vue.use(VueMask)
 

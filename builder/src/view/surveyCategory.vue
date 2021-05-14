@@ -50,7 +50,14 @@ import axios from 'axios'
 export default {
     created() {
         this.getCategories()
+        this.$gtag.event('dynacert-builder', { method: 'category' })
+
     },
+    watch: {
+        $route() {
+            this.$gtag.event('dynacert-builder', { method: 'category' })
+        }
+    },  
     data () {
         return {
             newcategory:null,

@@ -76,11 +76,12 @@ export default {
 
     },
     created() {
-
+        this.$gtag.event('dynacert-builder', { method: 'manager' })
     },
     watch: {
         $route() {
             serverBus.$emit('showLoader',false)
+            this.$gtag.event('dynacert-builder', { method: 'manager' })
         }
     },  
     methods: {
@@ -124,7 +125,7 @@ export default {
         },
         saveSurvey(surveyTitle,IDSurvey,categorySelected) {
             console.log('saveSurvey')
-            
+
             if (this.survey.length==0) {
                 this.alertSurveyMessage='Attention! the survey can not be empty'
                 return false;
