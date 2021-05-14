@@ -4,7 +4,25 @@
 
 The purpose of this project is to allow, starting from a pre-existing paper form or better pdf, to create an online form and digitally sign it, and to create a pdf with the compiled data.
 
-## Prerequisite
+## Demo
+
+Dynacert Builder
+
+http://dynacert.double77.com/builder/
+
+Dynacert Viewer
+
+http://dynacert.double77.com/viewer/
+
+## Arhitecture
+
+The project consists of three components:
+
+1) dynacert-server
+2) builder
+3) viewer
+
+### Prerequisite
 
 For this project, the following is required as a prerequisite:
 
@@ -21,16 +39,6 @@ or
 3) php 7.4.x or higher (https://php.net)
 
 4) MariaDB 10.5.x or higher (https://mariadb.com)
-
-
-
-## Arhitecture
-
-The project consists of three components:
-
-1) dynacert-server
-2) builder
-3) viewer
 
 
 
