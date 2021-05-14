@@ -24,9 +24,11 @@ export default {
         }
     },
     created() {
-        let userData=JSON.parse(localStorage.userData)
-        if (userData[this.question.id]) this.text=userData[this.question.id]
-        if (userData[this.question.nameParameterForLocalstorage]) this.text=userData[this.question.nameParameterForLocalstorage]
+        if (localStorage.userData) {
+            let userData=JSON.parse(localStorage.userData)
+            if (userData[this.question.id]) this.text=userData[this.question.id]
+            if (userData[this.question.nameParameterForLocalstorage]) this.text=userData[this.question.nameParameterForLocalstorage]
+        }
     },
     methods: {
         getInfoFromObject () {
