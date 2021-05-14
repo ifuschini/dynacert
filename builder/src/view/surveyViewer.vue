@@ -26,14 +26,14 @@
     </vue-context>
 
     <b-col v-if="survey != null">
-        <showSurveySinglePage 
+        <showSurveyAll 
         :survey="survey" />
     </b-col>
 </b-row>
 </template>
 <script>
 import axios from 'axios'
-import showSurveySinglePage from './components/showSurveySinglePage'
+import showSurveyAll from './components/showSurveyAll'
 
 import VueContext from 'vue-context'
 import { serverBus } from '../main'
@@ -105,7 +105,7 @@ export default {
     }
   },
   components: {
-    showSurveySinglePage,
+    showSurveyAll,
     VueContext,
   }
     
