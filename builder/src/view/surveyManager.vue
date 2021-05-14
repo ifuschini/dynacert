@@ -24,6 +24,7 @@
         </b-tab>
         <b-tab  @click.capture="changeTab(1)" title="Preview">
             <surveyPreview
+                ref="preview"
                 :survey="survey"
             />
 
@@ -87,7 +88,7 @@ export default {
         changeTab: function(e) {
             console.log('changeTab')
             if (e != 2) {
-                this.survey=this.newJsonFromEditor
+                if (this.showMapper==true) this.survey=this.newJsonFromEditor
             } else {
               this.showEditor=false
               setTimeout(function () { this.showEditor=true}.bind(this), 500)
@@ -95,9 +96,7 @@ export default {
             if (e==3) {
                 this.showMapper=true
             }
-            console.log('this.survey')
             console.log(this.survey)
-            console.log('this.survey')
         }, 
         loadSavedQuestion(survey) {
             console.log('loadSavedQuestion') 

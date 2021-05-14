@@ -1,7 +1,7 @@
 <template>
 <div>
     <!--div  v-for="(question,index) in survey" v-bind:key="index" style="align-content: left;"-->
-            <b-row>
+            <b-row >
                 <b-col lg="6" v-for="(question,index) in survey" v-bind:key="index">
                 <showSingleQuestion 
                     :question="question"
@@ -27,11 +27,15 @@ export default {
     ],
     data() {
         return {
-
+            showPreview: true
         }
     },
+    created() {
+        console.log('surveyPreviewCreated')
+    },
+    watch: {
+   },
     methods: {
-
     },
     components: {
         showSingleQuestion
