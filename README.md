@@ -4,16 +4,6 @@
 
 The purpose of this project is to allow, starting from a pre-existing paper form or better pdf, to create an online form and digitally sign it, and to create a pdf with the compiled data.
 
-## Demo
-
-Dynacert Builder
-
-http://dynacert.double77.com/builder/
-
-Dynacert Viewer
-
-http://dynacert.double77.com/viewer/
-
 ## Arhitecture
 
 The project consists of three components:
