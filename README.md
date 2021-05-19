@@ -6,6 +6,8 @@ The purpose of this project is to allow, starting from a pre-existing paper form
 
 ## Arhitecture
 
+# ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/docimage/architecture.jpg)
+
 The project consists of three components:
 
 1) dynacert-server
