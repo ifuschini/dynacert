@@ -2,6 +2,14 @@
   <div>
     <b-row> 
         <b-col>
+            {{numPages}}
+            <pdf 
+                style="width:1px;height:1px"
+                ref="myPdfComponent"
+                :src="src"
+                :page="key"
+            ></pdf>        
+
         <surveyImageMapper
         ref="pdfMapper"
         :imageToLoad="activeImage"
@@ -48,6 +56,7 @@
         />
         </b-col>
         <b-col lg="2" >
+
                 <div v-if="eventIdSelected!=null">
                     <div v-for="(file,index) in pdfBackground" v-bind:key="index"  >
                         <div class="documento" v-on:click="active(index)" :style="getStyle(index)">
@@ -62,7 +71,7 @@
                             :drop="true"
                             :drop-directory="false"
                             v-model="files"
-                            accept="image/jpeg,image/png"
+                            accept="image/jpeg,image/png,application/pdf"
                             @input-filter="inputFilter"
                             :size="1024 * 1024"
                             ref="upload">
@@ -100,6 +109,9 @@ import fileUpload from 'vue-upload-component'
 import imageCompression from 'browser-image-compression';
 import surveyImageMapper from './surveyImageMapper'
 import listComponentMapper from './listComponentMapper'
+import pdf from 'vue-pdf'
+
+
 
 import { serverBus } from '../../main'
 import axios from 'axios'
@@ -124,27 +136,103 @@ export default {
             showSignForm: false,
             eventIdSelected: null,
             surveyMap: null,
+            src:null,
+            numPages:null,
+            key: 1,
         }
     },
     created() {
         console.log('surveyMapper')
         console.log(this.survey)
-        //if (localStorage.pdfBackground) this.pdfBackground=JSON.parse(localStorage.pdfBackground)
         this.getListSurveys()
     },
     watch: {
         files () {
-            console.log('sono qui')
-            if (this.files[0].file.size < this.maxSizeImage  * 1024) {
-                this.setImage(this.files[0].blob)
+            if (this.files[0].file.type !='application/pdf') {
+
+                if (this.files[0].file.size < this.maxSizeImage  * 1024) {
+                    this.setImage(this.files[0].blob)
+                } else {
+                    this.handleImageUpload(this.files[0].file)
+                        //this.messageError='Attenzione l\'immagine risulta troppo grande'
+                }  
             } else {
-                this.handleImageUpload(this.files[0].file)
-                    //this.messageError='Attenzione l\'immagine risulta troppo grande'
+                    this.convertBlobToImage64(this.files[0].file,true)
             }
         },
 
     },
     methods: {
+        loadPdf(pdfUrl) {
+            this.src=pdf.createLoadingTask(pdfUrl);
+            this.src.promise.then(pdf => {   
+                console.log(pdf)
+                this.numPages = pdf.numPages;
+            });
+            setTimeout(function () { 
+                            this.parsePdf();
+            }.bind(this), 100)            
+        },     
+        parsePdf() {
+            //this.pdfBackground=[]
+            this.$refs.myPdfComponent.pdf.forEachPage(function(page) {
+                this.convertPdfInImage(page)
+ 
+            }.bind(this)) 
+
+        },
+        async convertPdfInImage(page) {
+                var scale=1.0
+                var type= 'image/jpg'
+                var quality= 0.92
+                var viewport = page.getViewport({ scale: scale })
+                var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
+                var renderContext = { canvasContext: ctx, viewport: viewport }
+
+                canvas.height = viewport.height
+                canvas.width = viewport.width
+
+                // @ts-ignore
+                await page.render(renderContext).promise
+                this.pdfBackground.push(canvas.toDataURL(type, quality))
+        },
+        convert() {
+                var url = 'pdf/example2.pdf';
+                var loadingTask = pdfjsLib.getDocument(url);
+                loadingTask.promise.then(function(pdf) {
+                //
+                // Fetch the first page
+                //
+                    console.log(pdf)
+                    pdf.getPage(1).then(function(page) {
+                    //var decoder = new TextDecoder('utf8');
+                    //var b64encoded = btoa(decoder.decode(page));
+                    //console.log(b64encoded)
+                    var scale = 1.0;
+                    var viewport = page.getViewport({ scale: scale, });
+
+                    //
+                    // Prepare canvas using PDF page dimensions
+                    //
+                    var canvas = document.getElementById('the-canvas');
+                    var context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    //
+                    // Render PDF page into canvas context
+                    //
+                        var renderContext = {
+                            canvasContext: context,
+                            viewport: viewport,
+                        };
+                        page.render(renderContext);
+                    });   
+                });
+        },     
+        showData(obj) {
+            console.log(obj)
+        },
         convertBase64(text) {
         return decodeURIComponent(escape(window.atob(text)));
         },
@@ -161,7 +249,7 @@ export default {
                 })
         },
         saveConfig() {
-            this.$refs.pdfMapper.getSelection()
+            if (this.$refs.pdfMapper) this.$refs.pdfMapper.getSelection()
             console.log('saveMapper' + this.eventIdSelected)
             this.isChange=false
             this.$emit('saveMapper', this.eventIdSelected,this.pdfBackground)
@@ -266,7 +354,7 @@ export default {
         inputFilter: function (newFile, oldFile, prevent) {
             if (newFile && !oldFile) {
                 // Filter non-image file
-                if (!/\.(jpeg|jpe|jpg|gif|png|webp)$/i.test(newFile.name)) {
+                if (!/\.(jpeg|jpe|jpg|gif|png|webp|pdf)$/i.test(newFile.name)) {
                 return prevent()
                 }
             }
@@ -285,24 +373,29 @@ export default {
                 console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
                 console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
                 console.log(compressedFile)
-                this.convertBlobToImage64(compressedFile)
+                this.convertBlobToImage64(compressedFile,false)
                 }.bind(this))
                 .catch(function (error) {
                 console.log(error.message);
                 });
         } ,       
-        convertBlobToImage64(blob) {
-            var reader = new FileReader(); 
-                reader.readAsDataURL(blob); 
-                reader.onloadend = function () { 
-                var base64String = reader.result; 
-                //console.log('Base64 String - ', base64String); 
-                this.assignImageToArray(base64String,blob)
-                }.bind(this)
+        convertBlobToImage64(blob,isPdf=false) {
+                var reader = new FileReader(); 
+                    reader.readAsDataURL(blob); 
+                    reader.onloadend = function () { 
+                    var base64String = reader.result; 
+                    //console.log('Base64 String - ', base64String);
+                    if (isPdf==false) {
+                        this.assignImageToArray(base64String)
+                    } else {
+                        this.loadPdf(base64String)
+
+                    }
+ 
+                    }.bind(this)
         },
-        assignImageToArray(img,blob) {
+        assignImageToArray(img) {
                 this.pdfBackground.push(img)
-                localStorage.pdfBackground=JSON.stringify(this.pdfBackground)
                 this.$forceUpdate
         },
         deleteItem (index) {
@@ -612,6 +705,7 @@ export default {
         fileUpload,
         surveyImageMapper,
         listComponentMapper,
+        pdf,
     }
 }
 </script>

@@ -8,6 +8,7 @@ import VueGtag from "vue-gtag";
 import italian from '@/languages/italian'
 import english from '@/languages/english'
 import VueKonva from 'vue-konva'
+
 Vue.use(VueKonva)
 
 
@@ -19,8 +20,8 @@ Vue.prototype.config = {
   productName: "dynamicCert",
   timeCheck: 5000,
   recaptchaId: '<captha id>',
-  //serviceBaseUrl: "http://localhost/builder/",
-  serviceBaseUrl:'',
+  serviceBaseUrl: "http://localhost/builder/",
+  //serviceBaseUrl:'',
   url: {
     listSurveys: "ws/listSurveyDb.php",
     getSurvey: "ws/getSurveyDb.php",
