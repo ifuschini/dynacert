@@ -4,7 +4,7 @@
 
 The purpose of this project is to allow, starting from a pre-existing paper form or better pdf, to create an online form and digitally sign it, and to create a pdf with the compiled data.
 
-# ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/docimage/proccess.jpg)
+# ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/docimage/process.jpg)
 
 
 ## Arhitecture
