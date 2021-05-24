@@ -20,8 +20,8 @@ Vue.prototype.config = {
   productName: "dynamicCert",
   timeCheck: 5000,
   recaptchaId: '<captha id>',
-  serviceBaseUrl: "http://localhost/builder/",
-  //serviceBaseUrl:'',
+  //serviceBaseUrl: "http://localhost/builder/",
+  serviceBaseUrl:'',
   url: {
     listSurveys: "ws/listSurveyDb.php",
     getSurvey: "ws/getSurveyDb.php",
