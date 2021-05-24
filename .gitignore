@@ -10,7 +10,8 @@ viewer/node_modules/
 viewer/dist/
 viewer/repository/
 viewer/confdyna/
-dynacert-server/html/
+dynacert-server/html/builder/
+dynacert-server/html/viewer/
 dynacert-server/conf/
 dynacert-server/mariadb_data/
 dynacert-server/mariadb_data/
