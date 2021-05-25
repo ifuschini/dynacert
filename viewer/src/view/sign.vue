@@ -304,140 +304,15 @@ export default {
                 this.showSignAlert=true
                 return false
             } 
-            let buffer=await (dynacert.createDynacert(this.configPdf,this.imagePdf,this.pdfData,this.surveyConfig,this.arrayGraphicSign,this.defaultSignWidth,this.defaultSignHeight))
+            let buffer=await (dynacert.createDynacert(this.configPdf,
+                                                     this.imagePdf,
+                                                     this.pdfData,
+                                                     this.surveyConfig,
+                                                     this.arrayGraphicSign,
+                                                     this.defaultSignWidth,
+                                                     this.defaultSignHeight))
             this.sendPdf(buffer)
             this.bufferStreamPdf=buffer
-           /*if (this.captchaResponse == null) {
-                this.alertMessage='Per favore accettare il captcha'
-                this.showSignAlert=true
-                return false
-
-            }*/
-            /*
-            this.btnLabel='Firma Applicata'
-            this.disableSignBtn=true
-            // create a document the same way as above
-            var d = new Date();
-            var dd = String(d.getDate()).padStart(2, '0');
-            var mm = String(d.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = d.getFullYear();
-            let doc=null
-            let stream=null
-            const pdfChunks = [];
-            var pdfBuffer=null
-            for (let page=0;page<this.configPdf.pages.length;page++) {
-                let objPage=this.configPdf.pages[page]
-                if (page==0) {
-                    doc = new PDFDocument( 
-                                    {autoFirstPage: true,
-                                    size: 'A4',
-                                    layout: 'portrait',
-                                    bufferPages: true,
-                                    }
-
-                                )
-                    //stream = doc.pipe(blobStream())
-                } else {
-                    doc.addPage()
-                }
-                // add background image
-                if (page<this.imagePdf.length)
-                    doc.image(this.imagePdf[page], 0, 0, {width: 580});
-                if (page==0) 
-                    doc.fontSize(5).text(d, 5, 5)
-                
-                //coordinate for survey
-                
-                var wPre = 0;
-                var xPre = -1;
-                var yPre = -1
-                for (let i=0;i<this.pdfData.length;i++){
-                    let objData=this.pdfData[i]
-                    let coordsKey=Object.keys(objPage.coords)
-                    let id=this.surveyConfig[i].id
-                    console.log(i + '<--->' + id)
-                    //if (i < coordsKey.length) {
-                    if (objPage.coords[id]) {
-                        if (objPage.coords[id].type=='simpletext' 
-                            || objPage.coords[id].type=='date'
-                            || objPage.coords[id].type=='email'
-                            || objPage.coords[id].type=='tel'                       
-                            ) {
-                            console.log(objPage.coords[id])
-                            let objText=objPage.coords[id]
-                            if (objText.append==false) {
-                                doc.font(objText.font)
-                                    .fontSize(objText.fontSize)
-                                    .text(objData, objText.x, objText.y,{align:objText.align})
-                            } else {
-                                doc.font(objText.font)
-                                    .fontSize(objText.fontSize)
-                                    .text(objData, xPre + wPre + 5, yPre,{align:objText.align})
-                            }
-                            wPre=doc.widthOfString(objData)
-                            xPre=objText.x
-                            yPre=objText.y
-                        } else if (objPage.coords[id].type=='multiplegrid') {
-                            console.log('multiplegrid')
-                             let objMultigrid=objPage.coords[id].coord
-                            for (let k=0;k<objData.length;k++){
-                                let coordSearch=k + '_' + objData[k]
-                                let pos = objMultigrid.map(function(e) { return e.coord; }).indexOf(k + '_' + objData[k]);
-                                console.log(coordSearch + '------>' + pos)
-                                if (pos != -1) {
-                                    console.log(objMultigrid[pos])
-                                }
-                                doc.font(objMultigrid[pos].font)
-                                        .fontSize(objMultigrid[pos].fontSize)
-                                        .text(objMultigrid[pos].checkChar, objMultigrid[pos].x, objMultigrid[pos].y,{align:objMultigrid[pos].align})
-                                
-
-                            }
-                        }
-                    }
-                }
-                //sign document
-                console.log('start apply')
-                for (let i=0;i<objPage.signElements.length;i++) {
-                    let objSign=objPage.signElements[i]
-                    var imageSign=null
-                    imageSign=this._base64ToArrayBuffer(this.arrayGraphicSign[objSign.id])
-                    let widthSign= this.defaultSignWidth
-                    let heightSign= this.defaultSignHeight
-                    if (objSign.width) widthSign
-                    if (objSign.height) heightSign
-                    doc.image(imageSign, objSign.x, objSign.y, { fit: [widthSign, heightSign] })
-                }
-                for (let i=0;i<objPage.todayElements.length;i++) {
-                    let objToday=objPage.todayElements[i]
-                    doc.font(objToday.font)
-                        .fontSize(objToday.fontSize)
-                        .text(dd + '/' + mm + '/' + yyyy, objToday.x, objToday.y,{align:objToday.align})
-                }
-            }
-
-            doc.on('data', (data) => {
-                pdfChunks.push(data);
-            });
-            doc.on('end', () => {
-                console.log('end')
-                pdfBuffer=Buffer.concat(pdfChunks)
-                //this.$refs.iframe.src = stream.toBlobURL('application/pdf');
-                /*this.toDataUrl(this.$refs.iframe.src, function(base64) {
-                        //console.log(base64)
-                        this.base64pdf=base64
-                }.bind(this));*/
-            /*
-                setTimeout(function () {
-                    this.bufferStreamPdf=pdfBuffer
-
-                    this.sendPdf(pdfBuffer)
-                }.bind(this), 100)
-
-            })
-            // Finalize PDF file
-            doc.end();
-            */
         },
         toDataUrl(url, callback) {
             var xhr = new XMLHttpRequest();
