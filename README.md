@@ -6,6 +6,11 @@ The purpose of this project is to allow, starting from a pre-existing paper form
 
 # ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/docimage/process.jpg)
 
+## Demo
+
+https://dyna-cert.org/
+
+
 
 ## Arhitecture
 
@@ -119,4 +124,10 @@ http://localhost/viewer
 ## License
 
 Dynacert	 is available under the MIT license.
+
+###### Logo
+
+<div class="subTitle">Logo created by <a href="https://www.designevo.com/" style="text-decoration: none;" title="Free Online Logo Maker">DesignEvo logo maker</a></div>
+
+
 
