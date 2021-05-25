@@ -1,4 +1,4 @@
-# ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/builder/public/images/logo.png)
+![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/builder/public/images/logo.png)
 
 ## Proposal
 
