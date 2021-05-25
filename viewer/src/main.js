@@ -23,8 +23,8 @@ Vue.prototype.config = {
   productName: "dynaCer",
   timeCheck: 5000,
   recaptchaId: '<id>',
-  //serviceBaseUrl: "http://localhost/viewer/",
-  serviceBaseUrl: "",
+  serviceBaseUrl: "http://localhost/viewer/",
+  //serviceBaseUrl: "",
   url: {
     getImage: "ws/getImage.php",
     getSurvey: "ws/getSurveyConfigDb.php",

@@ -106,6 +106,7 @@
 </style>
 <script>
 import PDFDocument from 'pdfkit/js/pdfkit.standalone'
+import dynacert from '../dynacertLib/dynacert'
 import blobStream from "blob-stream"
 import axios from 'axios'
 import QRCode from 'qrcode'
@@ -294,7 +295,7 @@ export default {
                     this.error = e;
             })
         },
-        createPdf() {
+        async createPdf() {
             this.showSignAlert=false
             this.signToShow=null
             console.log("createSimplePdf")
@@ -303,12 +304,16 @@ export default {
                 this.showSignAlert=true
                 return false
             } 
+            let buffer=await (dynacert.createDynacert(this.configPdf,this.imagePdf,this.pdfData,this.surveyConfig,this.arrayGraphicSign,this.defaultSignWidth,this.defaultSignHeight))
+            this.sendPdf(buffer)
+            this.bufferStreamPdf=buffer
            /*if (this.captchaResponse == null) {
                 this.alertMessage='Per favore accettare il captcha'
                 this.showSignAlert=true
                 return false
 
             }*/
+            /*
             this.btnLabel='Firma Applicata'
             this.disableSignBtn=true
             // create a document the same way as above
@@ -422,6 +427,7 @@ export default {
                         //console.log(base64)
                         this.base64pdf=base64
                 }.bind(this));*/
+            /*
                 setTimeout(function () {
                     this.bufferStreamPdf=pdfBuffer
 
@@ -431,7 +437,7 @@ export default {
             })
             // Finalize PDF file
             doc.end();
-
+            */
         },
         toDataUrl(url, callback) {
             var xhr = new XMLHttpRequest();
