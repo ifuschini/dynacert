@@ -77,11 +77,11 @@ Dynacert builder is the administration component that allows:
 
 1) build the form
 
-[![Watch the video](https://img.youtube.com/vi/K1hvEyy9INo/0.jpg)](https://youtu.be/K1hvEyy9INo)
+[![Watch the video](https://img.youtube.com/vi/b3fANQYCEQk/0.jpg)](https://youtu.be/b3fANQYCEQk)
 
 2) Place the fields on the page
 
-[![Watch the video](https://img.youtube.com/vi/vvxzmZ7grzA/0.jpg)](https://youtu.be/vvxzmZ7grzA)
+[![Watch the video](https://img.youtube.com/vi/lp_BxYJYdWQ/0.jpg)](https://youtu.be/lp_BxYJYdWQ)
 
 
 3) have a preview of the online form
@@ -104,7 +104,7 @@ http://localhost/builder
 
 is the part reserved for the user to fill in the form, his signature and download the pdf with the compiled data.
 
-[![Watch the video](https://img.youtube.com/vi/2KFHBN3spz0/0.jpg)](https://youtu.be/2KFHBN3spz0)
+[![Watch the video](https://img.youtube.com/vi/xRRvHbS7ZG4/0.jpg)](https://youtu.be/xRRvHbS7ZG4)
 
 
 #### Installation
