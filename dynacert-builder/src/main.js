@@ -20,8 +20,8 @@ Vue.prototype.config = {
   productName: "Dyna-Cert Builder",
   timeCheck: 5000,
   recaptchaId: '<captha id>',
-  serviceBaseUrl: "http://localhost/builder/",
-  //serviceBaseUrl:'',
+  //serviceBaseUrl: "http://localhost/builder/",
+  serviceBaseUrl:'',
   url: {
     listForms: "ws/listFormDb.php",
     getForm: "ws/getFormDb.php",
