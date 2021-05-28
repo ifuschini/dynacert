@@ -91,7 +91,7 @@ Dynacert builder is the administration component that allows:
 Run this commands below:
 
 ```
-cd builder
+cd dynacert-builder
 npm install
 npm run builddocker
 ```
@@ -112,7 +112,7 @@ is the part reserved for the user to fill in the form, his signature and downloa
 Run this commands below:
 
 ```
-cd viewer
+cd dynacert-viewer
 npm install
 npm run builddocker
 ```
