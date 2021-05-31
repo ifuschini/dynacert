@@ -1,5 +1,5 @@
 <template>
-    <div class="titleLogo">
+    <div class="titleLogo info">
          <b-button variant="secondary" v-on:click="sideBar()" style="margin-left:5px"><b-icon icon="list" size="sm"/></b-button>
             <img src="images/logo.png" width="200" height="65" /> 
     </div>
@@ -8,6 +8,14 @@
     .titleLogo {
         margin-bottom: 10px;
     }
+@media only screen and (max-width: 600px) {
+  .info {
+    visibility:collapse;
+  }
+}
+
+
+
 </style>
 
 

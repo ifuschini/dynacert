@@ -1,12 +1,12 @@
 <template>
     <div :class="'d-flex' + toggle" id="wrapper">
-          <sidebar/>
-        <div id="page-content-wrapper">
-          <headerComponent/>
-          <router-view/>
-        </div>
-        <Loader v-if="showLoader==true"/>
-
+              <sidebar/>
+            <div id="page-content-wrapper">
+              <headerComponent/>
+              <router-view class="info"/>
+            </div>
+            <info/>
+           <Loader v-if="showLoader==true"/>
     </div>
 </template>
 <style lang="scss">
@@ -14,10 +14,21 @@
   @import '~bootstrap/scss/bootstrap.scss';
   @import '~bootstrap-vue/src/index.scss';
 </style>
+<style>
+@media only screen and (max-width: 600px) {
+  .info {
+    visibility:collapse;
+  }
+}
+
+</style>
+
+
 <script>
 // @ts-nocheck
 import { serverBus } from '../main'
 import Loader from '../loader/animationLoader'
+import info from '../info/info'
 import headerComponent from './header'
 import sidebar from './sidebar'
 export default {
@@ -26,6 +37,7 @@ export default {
     Loader,
     headerComponent,
     sidebar,
+    info,
   },
   data() {
       return {
