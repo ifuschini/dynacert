@@ -5,8 +5,5 @@ $dbhost = $ip;
 $dbusr = "dynaadmin";
 $dbpwd = "dynacert";
 $dbname = "dynadb";
-$repositoryDir= '../../repository/';
-$repositoryDir= '/Users/idelfuschini/Double77SW/dynamiccert/builder/repository/';
-$repositoryMapDir = '/Users/idelfuschini/Double77SW/dynamiccert/builder/repositoryMap/';
 cors();
 ?>
