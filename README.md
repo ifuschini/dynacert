@@ -71,7 +71,7 @@ cd dynacert-server
 ./start-db-ip.sh
 ```
 
-### dynacert builder
+### Dyna-cert builder
 
 Dynacert builder is the administration component that allows:
 
@@ -83,12 +83,11 @@ Dynacert builder is the administration component that allows:
 
 [![Watch the video](https://img.youtube.com/vi/lp_BxYJYdWQ/0.jpg)](https://youtu.be/lp_BxYJYdWQ)
 
-
 3) have a preview of the online form
 
-#### Installation
+#### Build the project 
 
-Run this commands below:
+Run this commands below if you use docker instance:
 
 ```
 cd dynacert-builder
@@ -96,18 +95,24 @@ npm install
 npm run builddocker
 ```
 
+The build of Dyna-cert viewer will be locat in <project-path>/dynacert-server/html/viewer
+
 #### URL 
 
 http://localhost/builder
 
-### dynacert viewer
+#### DEMO URL
+
+https://dyna-cert.org/builder/
+
+### Dyna-cert viewer
 
 is the part reserved for the user to fill in the form, his signature and download the pdf with the compiled data.
 
 [![Watch the video](https://img.youtube.com/vi/xRRvHbS7ZG4/0.jpg)](https://youtu.be/xRRvHbS7ZG4)
 
 
-#### Installation
+#### Build the project
 
 Run this commands below:
 
@@ -117,9 +122,15 @@ npm install
 npm run builddocker
 ```
 
+The build of Dyna-cert viewer will be locat in <project-path>/dynacert-server/html/viewer
+
 #### URL
 
 http://localhost/viewer
+
+#### Demo URL
+
+https://dyna-cert.org/viewer/
 
 ## License
 
