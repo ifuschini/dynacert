@@ -1,5 +1,5 @@
 <template>
-    <div class="bodyUrc">
+    <div class="bodyDynacert">
 		<div class="loader">
 		<span>Loading...</span>
 		</div>
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style>
-.bodyUrc{
+.bodyDynacert{
     position: absolute;
     top: 0px;
     left:0px;
