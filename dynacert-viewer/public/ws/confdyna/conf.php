@@ -10,4 +10,5 @@
     $tokenLength=32;
     $reCapUrl = "https://www.google.com/recaptcha/api/siteverify";
     $reCaptchaSecretV3 = '<secret key>';
+    $expiredLicenseDate = "2022-02-01";
 ?>

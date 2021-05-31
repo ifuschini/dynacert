@@ -2,7 +2,7 @@
     <div>
         <div>
         <center>
-           <span v-on:click="goHome()"> <img :src="config.serviceBaseUrl + 'ws/getImage.php?type=image&name=logo.png'" style="margin-bottom:20px"/></span>
+           <span v-on:click="goHome()"> <img src="images/logo.png" style="margin-bottom:20px"/></span>
             </center>
           <router-view/>
           <br/><br/>
@@ -14,7 +14,7 @@
        </div>
 
        <div class="d-flex bg-dark text-light align-items-center px-3 py-2 footer" style="">
-        <strong class="mr-auto">Double77 srl - DynaCert</strong>
+        <strong class="mr-auto">Idel Fuschini - DynaCert</strong>
         <span style="float:right">v{{config.version}}</span>
        </div>
       </template>
