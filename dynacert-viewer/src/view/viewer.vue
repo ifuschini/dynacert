@@ -56,26 +56,19 @@ export default {
         getForm() {
             serverBus.$emit('showLoader',true)
             axios
-                .get(this.config.serviceBaseUrl + this.config.url.getForm,{
-                    params: {
-                        id: this.$route.params.data
-                    }
+                .get(this.config.serviceBaseUrl + this.config.url.getForm + this.$route.params.data,{
                 })
                 .then(response => {
                 this.form=response.data.form
-                if (response.data.expiredLicenseDate==true) {
-                    alert('Errore: L1C3NZ@')
-                } else {
-                    serverBus.$emit('showLoader',false)
-                }
-                localStorage.costumer=response.data.costumer
-                localStorage.emailCostumer=response.data.emailCostumer
+                serverBus.$emit('showLoader',false)
+                //localStorage.costumer=response.data.costumer
+                //localStorage.emailCostumer=response.data.emailCostumer
                 //localStorage.pdfBack=JSON.stringify(response.data.pdfBack)
-                localStorage.pdfBack=JSON.stringify(response.data.images)
-                localStorage.configPdf=JSON.stringify(response.data.configPdf)
+                //localStorage.pdfBack=JSON.stringify(response.data.images)
+                //localStorage.configPdf=JSON.stringify(response.data.configPdf)
                 localStorage.formConfig=JSON.stringify(response.data.form)
                 console.log('localStorage')
-                this.formTitle=response.data.formTitle
+                this.formTitle=response.data.title
                 for (let i=0;i<this.form.length;i++) {
                     this.alertFormMessage.push('')
                 }
@@ -128,8 +121,7 @@ export default {
                 localStorage.userData=JSON.stringify(objectToRemember)
                 this.$router.push({ name: 'Sign' ,params: {data: {              
                     pdfData: this.responses,
-                    lastName: lastName,
-                    firstName: firstName,
+                    id: this.$route.params.data,
                 }
                 }})
             }

@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "dynacert-viewer"
+    },
+    {
+      "path": "dynacert-builder"
+    },
+    {
+      "path": "dynacert-docker"
+    },
+    {
+      "path": "dynacert-server"
+    }
+  ]
+}

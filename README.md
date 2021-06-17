@@ -16,60 +16,53 @@ https://dyna-cert.org/
 
 # ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/docimage/architecture.jpg)
 
-The project consists of three components:
+The architecture of Dynacert consisit in three layer:
 
-1) dynacert-server
-2) builder
-3) viewer
+1. Dynacert Front-End, where are publish the two SPA (Single Page Application) components: 
+
+   a - builder 
+   b - viewer
+
+2. Dynacert Back-End, RestfullApi Interface server based on Symfony framework
+
+3. Dynacert DB, MariaDB 
 
 ### Prerequisite
 
 For this project, the following is required as a prerequisite:
 
-1) node 12 or higher (https://nodejs.org)
+1. node 12 or higher (https://nodejs.org)
 
-2) docker 20.10.x or higher (https://www.docker.com)
-
-or
-
-1) node 12 or higher (https://nodejs.org)
-
-2) apache 2.x or higher (https://httpd.apache.org)
-
-3) php 7.4.x or higher (https://php.net)
-
-4) MariaDB 10.5.x or higher (https://mariadb.com)
-
-
-
-### dynacert-server
-
-is a docker project for creating the development environment.
-It is made up of two containers:
-
-1) php-apache
-2) maria db
-
-To launch the server environment and configure it correctly is very simple, just run these two commands:
-
-```
-cd dynacert-server.sh
-docker-compose -p dynacert up --build 
-```
+2. docker 20.10.x or higher (https://www.docker.com)
+3. php 7.4.x or higher (https://php.net)
+4. Symfony 4.25.x or higher (https://www.symfony.com)
+5. Composer 2.1.x or higher (https://getcomposer.org/)
 
 or
 
+1. node 12 or higher (https://nodejs.org)
+
+2. apache 2.x or higher (https://httpd.apache.org)
+
+3. php 7.4.x or higher (https://php.net)
+4. Symfony 4.25.x or higher (https://www.symfony.com)
+5. Composer 2.1.x or higher (https://getcomposer.org/)
+6. MariaDB 10.5.x or higher (https://mariadb.com)
+
+## Installation
+
+First of all clone the Dynacert project:
+
 ```
-cd dynacert-server
-./start-server
+git clone https://github.com/ifuschini/dynacert.git
 ```
 
-once the docker containers are up, the pointing to the db needs to be configured correctly:
+and follow this step:
 
-```
-cd dynacert-server
-./start-db-ip.sh
-```
+1. build and deploy dynacert-builder
+2. build and deploy dynacert-viewer
+3. build dynacert-server
+4. start docker 
 
 ### Dyna-cert builder
 
@@ -123,6 +116,30 @@ npm run builddocker
 ```
 
 The build of Dyna-cert viewer will be locat in <project-path>/dynacert-server/html/viewer
+
+### dynacert-docker
+
+is a docker project for creating the development environment.
+It is made up of two containers:
+
+1) php-apache
+2) maria db
+
+To launch the server environment and configure it correctly is very simple, just run these two commands:
+
+```
+cd dynacert-server
+docker-compose -p dynacert up --build 
+```
+
+or
+
+```
+cd dynacert-server
+./start-server.sh
+```
+
+### 
 
 #### URL
 

@@ -157,14 +157,16 @@ export default {
             signToShow:null,
             signIdToShow:null,
             arrayGraphicSign: {},
+            pdfBackGround: [],
         }
     },
     watch: {
         $route() {
             console.log(this.$route.params.data)
-            if (this.$route.params.data)
+            if (this.$route.params.data && this.$route.params.data.pdfData != undefined) {
                 this.pdfData=this.$route.params.data.pdfData
-            else 
+                this.getImage()
+            }  else 
                 this.goHome()
         },
         "$refs.signature"() {
@@ -175,15 +177,31 @@ export default {
     created() {
         console.log('mmmmmmmmmm')
         console.log(this.$route.params.data)
-            if (this.$route.params.data)
+        if (this.$route.params.data && this.$route.params.data.pdfData != undefined) {
                 this.pdfData=this.$route.params.data.pdfData
-            else 
+                this.getImage()
+        }   else 
                 this.goHome()
-        this.startDownloadTemplate()
+        
     },
     methods: {
+        getImage() {
+            serverBus.$emit('showLoader',true)
+            axios
+                .get(this.config.serviceBaseUrl + this.config.url.getPdfConfig + this.$route.params.data.id,{
+                })
+                .then(response => {
+                    this.pdfBackGround=response.data.images
+                    this.configPdf=response.data.map
+                    this.startDownloadTemplate()
+                    serverBus.$emit('showLoader',false)
+                })
+                .catch(e => {
+                    this.error = e;
+            })
+        },
         goHome() {
-        this.$router.push('/')
+            this.$router.push('/')
         }, 
         onVerify: function (response) {
                 console.log('Verify: ' + response)
@@ -208,9 +226,7 @@ export default {
         startDownloadTemplate() {
             if (localStorage.formConfig) this.formConfig=JSON.parse(localStorage.formConfig)
             else this.goHome()
-            
-            if (localStorage.configPdf) this.configPdf=JSON.parse(localStorage.configPdf)
-            let pdfBack=JSON.parse(localStorage.pdfBack)
+            let pdfBack=this.pdfBackGround
             for (let i=0; i<pdfBack.length;i++) { 
                 let data=pdfBack[i].substring(pdfBack[i].indexOf('base64') + 7)
                 this.imagePdf.push(base64._base64ToArrayBuffer(data))
@@ -330,8 +346,6 @@ export default {
                     let blob = new Blob([pdfBuffer], {type: 'application/pdf'});
                     let data = new FormData()
                     this.disabledSend=true
-                    data.append('firstname', this.$route.params.data.firstName)
-                    data.append('lastname', this.$route.params.data.lastName)
                     data.append('cat', 'all')
                     data.append('tokenV3',token)
                     data.append('file', blob)

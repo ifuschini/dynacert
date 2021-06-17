@@ -4,19 +4,17 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
 # Node artifact files
-builder/node_modules/
-builder/dist/
-viewer/node_modules/
-viewer/dist/
-viewer/repository/
-viewer/confdyna/
-dynacert-server/html/builder/
-dynacert-server/html/viewer/
-dynacert-server/conf/
-dynacert-server/mariadb_data/
-dynacert-server/mariadb_data/
-builder/repositoryMap
-builder/repository
+dynacert-builder/node_modules/
+dynacert-builder/dist/
+dynacert-viewer/node_modules/
+dynacert-viewer/dist/
+dynacert-viewer/repository/
+dynacert-viewer/confdyna/
+dynacert-docker/html/builder/
+dynacert-docker/html/viewer/
+dynacert-docker/conf/
+dynacert-docker/mariadb_data/
+dynacert-docker/mariadb_data/
 
 # Compiled Java class files
 *.class
@@ -59,3 +57,55 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Cache and logs (Symfony2)
+dynacert-symfony/app/cache/*
+dynacert-symfony/app/logs/*
+!dynacert-symfonyapp/cache/.gitkeep
+!dynacert-symfonyapp/logs/.gitkeep
+
+# Email spool folder
+dynacert-symfony/app/spool/*
+
+# Cache, session files and logs (Symfony3)
+dynacert-symfony/var/cache/*
+dynacert-symfony/var/logs/*
+dynacert-symfony/var/sessions/*
+!dynacert-symfony/var/cache/.gitkeep
+!dynacert-symfony/var/logs/.gitkeep
+!dynacert-symfony/var/sessions/.gitkeep
+
+# Logs (Symfony4)
+dynacert-symfony/var/log/*
+!dynacert-symfony/var/log/.gitkeep
+
+# Parameters
+dynacert-symfony/app/config/parameters.yml
+dynacert-symfony/app/config/parameters.ini
+
+# Managed by Composer
+dynacert-symfony/app/bootstrap.php.cache
+dynacert-symfony/var/bootstrap.php.cache
+dynacert-symfony/bin/*
+!dynacert-symfonybin/console
+!dynacert-symfonybin/symfony_requirements
+dynacert-symfony/vendor/
+
+# Assets and user uploads
+dynacert-symfony/web/bundles/
+dynacert-symfony/web/uploads/
+
+# PHPUnit
+dynacert-symfony/app/phpunit.xml
+dynacert-symfony/phpunit.xml
+
+# Build data
+dynacert-symfony/build/
+
+# Composer PHAR
+dynacert-symfony/composer.phar
+
+# Backup entities generated with doctrine:generate:entities command
+**/Entity/*~
+
+# Embedded web-server pid file
+dynacert-symfony/.web-server-pid
