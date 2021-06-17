@@ -117,6 +117,16 @@ npm run builddocker
 
 The build of Dyna-cert viewer will be locat in <project-path>/dynacert-server/html/viewer
 
+### dynacert-server
+
+is the server component that provides rest services for Dynacert-viewer and Dynacert-server
+
+```
+cd dynacert-server
+composer install
+symphony serve
+```
+
 ### dynacert-docker
 
 is a docker project for creating the development environment.
@@ -128,14 +138,14 @@ It is made up of two containers:
 To launch the server environment and configure it correctly is very simple, just run these two commands:
 
 ```
-cd dynacert-server
+cd dynacert-docker
 docker-compose -p dynacert up --build 
 ```
 
 or
 
 ```
-cd dynacert-server
+cd dynacert-docker
 ./start-server.sh
 ```
 
