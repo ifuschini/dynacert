@@ -31,12 +31,12 @@
                 </thead>
                 <tbody>
                 <tr v-for="(category,index) in arrayCategory" v-bind:key="index">
-                    <td>{{category.ID}}</td>
+                    <td>{{category.id}}</td>
                     <td>
-                        <span v-if="idSelected != category.ID" @dblclick="modify(category.ID,category.name)" style="min-width:100%">{{category.name}}</span>
-                        <b-form-input size="sm" v-if="idSelected == category.ID" v-model="categoryToModify" v-on:keyup.enter="modifyCategory()" v-on:keyup.esc="idSelected = null"/>
+                        <span v-if="idSelected != category.id" @dblclick="modify(category.id,category.name)" style="min-width:100%">{{category.name}}</span>
+                        <b-form-input size="sm" v-if="idSelected == category.id" v-model="categoryToModify" v-on:keyup.enter="modifyCategory()" v-on:keyup.esc="idSelected = null"/>
                     </td>
-                    <td><b-button size="sm" variant="danger" v-on:click="deleteCategory(category.ID)">delete</b-button></td>
+                    <td><b-button size="sm" variant="danger" v-on:click="deleteCategory(category.id)">delete</b-button></td>
                 </tr>
                 </tbody>
             </table>
@@ -74,7 +74,7 @@ export default {
                     return false
                 }
                 axios
-                    .post(this.config.serviceBaseUrl + this.config.url.modifyCategory,{
+                    .put(this.config.serviceBaseUrl + this.config.url.modifyCategory,{
                         id: this.idSelected,
                         name: this.categoryToModify
                     },{
@@ -87,7 +87,7 @@ export default {
                     .then(response => {
                         this.categoryToModify=null
                         this.idSelected=null
-                        this.getCategories()
+                        this.arrayCategory=response.data.response
                     })
                     .catch (e=> {
                                 this.error=e;
@@ -106,9 +106,7 @@ export default {
                 }
                 if (confirm('Do you want to delete this item ?') == false) return false
                 axios
-                    .post(this.config.serviceBaseUrl + this.config.url.deleteCategory,{
-                        id: id,
-                    },{
+                    .delete(this.config.serviceBaseUrl + this.config.url.deleteCategory + id,{
                     headers: {
                         'Content-Type': 'application/json',
                         Accept: 'application/json',            
@@ -116,7 +114,7 @@ export default {
                     }
                     )
                     .then(response => {
-                        this.getCategories()
+                        this.arrayCategory=response.data.response
                     })
                     .catch (e=> {
                                 this.error=e;
@@ -130,9 +128,7 @@ export default {
                 }
                 )
                 .then(response => {
-                    console.log(response)
                     this.arrayCategory=response.data.response
-                
                 })
                 .catch(e => {
                     this.error = e;
@@ -162,10 +158,8 @@ export default {
                         if (response.data.status=='ko') 
                             alert(response.data.message)
                         else
-                            this.newcategory=null
-                        console.log(response)
+                            this.arrayCategory=response.data.response
 
-                        this.getCategories()
                     })
                     .catch (e=> {
                                 this.error=e;

@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "builddocker": "vue-cli-service build --dest ../dynacert-server/html/builder",
+    "builddocker": "vue-cli-service build --dest ../dynacert-docker/html/builder",
+    "devdocker": "vue-cli-service --mode development build --dest ../dynacert-docker/html/builder",
     "development": "vue-cli-service --mode development build",
     "lint": "vue-cli-service lint"
   },

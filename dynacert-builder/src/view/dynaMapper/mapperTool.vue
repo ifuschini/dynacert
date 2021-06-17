@@ -28,7 +28,7 @@
             <b-col>
         <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" >
             <option value="null">--- select a form --- </option>
-            <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.ID">{{form.title}}</option>
+            <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
         </select>
             </b-col>
         </b-row>
@@ -265,10 +265,7 @@ export default {
             this.eventIdSelected=null
         }
         axios
-            .get(this.config.serviceBaseUrl + this.config.url.getForm ,{
-            params: {
-                id: event.target.value
-            }
+            .get(this.config.serviceBaseUrl + this.config.url.getForm + event.target.value,{
             }
             )
             .then(response => {
@@ -287,10 +284,7 @@ export default {
             serverBus.$emit('showLoader',true)
             console.log(id)
             axios
-                .get(this.config.serviceBaseUrl + this.config.url.getMap ,{
-                params: {
-                    formId: id
-                }
+                .get(this.config.serviceBaseUrl + this.config.url.getMap + id ,{
                 }
                 )
                 .then(response => {

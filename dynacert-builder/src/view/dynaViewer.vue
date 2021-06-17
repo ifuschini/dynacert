@@ -61,11 +61,11 @@ export default {
     showSingleViewer(index) {
             console.log(index)
             console.log(this.listForms[index])
-            this.$router.push({ name: 'FormSinglePage', params: {id: this.listForms[index].ID}})
+            this.$router.push({ name: 'FormSinglePage', params: {id: this.listForms[index].id}})
     },
     showAllViewer(index) {
             console.log(index)
-            this.$router.push({ name: 'FormAll' ,params: {id: this.listForms[index].ID}})
+            this.$router.push({ name: 'FormAll' ,params: {id: this.listForms[index].id}})
     },
     getForms () {
       serverBus.$emit('showLoader',true)
@@ -83,10 +83,7 @@ export default {
       serverBus.$emit('showLoader',true)
       console.log(index)
       axios
-        .get(this.config.serviceBaseUrl + this.config.url.getForm ,{
-          params: {
-            id: this.listForms[index].ID
-          }
+        .get(this.config.serviceBaseUrl + this.config.url.getForm + this.listForms[index].id,{
         }
         )
         .then(response => {

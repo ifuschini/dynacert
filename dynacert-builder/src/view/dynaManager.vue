@@ -152,7 +152,7 @@ export default {
                 .then(response => {
                     serverBus.$emit('showLoader',false)
                     console.log(response)
-                    this.$refs.formMaker.getForms()
+                    this.$refs.formMaker.updateListForms(response.data.response)
                     this.$refs.formMaker.init()
                     //this.showTreeView=true
                     //alert('Salvataggio avvenuto con successo')

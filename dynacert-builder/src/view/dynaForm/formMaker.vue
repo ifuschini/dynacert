@@ -9,7 +9,7 @@
                     <b-card-text>
                             <select v-on:change="getForm(fileSelected)" v-model="fileSelected" class="form-control">
                                 <option  :value="null">---- Select a form ----</option>
-                                <option v-for="(form,index) in listForms" v-bind:key="index" :value="index">{{form.title}}({{form.ID}})</option>
+                                <option v-for="(form,index) in listForms" v-bind:key="index" :value="index">{{form.title}}({{form.id}})</option>
                             </select>
 
                     </b-card-text>
@@ -46,7 +46,7 @@
                                                 <label > Category </label>
                                                 <select  v-model="categorySelected" class="form-control">
                                                 <option :value="null">-- select a category --</option>
-                                                <option v-for="(category,index) in arrayCategory" v-bind:key="index" :value="category.ID">{{category.name}}</option>
+                                                <option v-for="(category,index) in arrayCategory" v-bind:key="index" :value="category.id">{{category.name}}</option>
                                             </select>
                                                 
                                                 </div>
@@ -359,16 +359,20 @@ export default {
                     this.error = e;
             })
         },
-        getForms () {
-        axios
-            .get(this.config.serviceBaseUrl + this.config.url.listForms)
-            .then(response => {
-                this.listForms = response.data.response
-                this.formTitle = ''
+        updateListForms(listForms) {
+            this.listForms=listForms
+            this.formTitle = ''
+        },
+        getForms (listforms=null) {
+            axios
+                .get(this.config.serviceBaseUrl + this.config.url.listForms)
+                .then(response => {
+                    this.listForms = response.data.response
+                    this.formTitle = ''
+                })
+                .catch(e => {
+                    this.error = e;
             })
-            .catch(e => {
-                this.error = e;
-        })
         },
 
         getForm(index) {
@@ -380,10 +384,7 @@ export default {
         }
         console.log(index)
         axios
-            .get(this.config.serviceBaseUrl + this.config.url.getForm ,{
-            params: {
-                id: this.listForms[index].ID
-            }
+            .get(this.config.serviceBaseUrl + this.config.url.getForm + this.listForms[index].id,{
             }
             )
             .then(response => {
@@ -391,7 +392,7 @@ export default {
                 this.$emit('loadSavedQuestion',
                         JSON.parse(response.data.form)
                 )
-                this.IDSelected=this.listForms[index].ID
+                this.idSelected=this.listForms[index].id
                 this.categorySelected=response.data.category
                 this.formTitle=response.data.title
             })
@@ -506,7 +507,7 @@ export default {
                 this.alertFormMessage='Attention! the name of the form can not be empty'
                 return false;
             }
-            let IDSelected=this.IDSelected
+            let IDSelected=this.idSelected
             if (action=='new') IDSelected=null
             this.alertFormMessag=''
             this.$emit('saveForm',
@@ -514,7 +515,7 @@ export default {
                 IDSelected,
                 this.categorySelected,
             )
-            this.IDSelected=null
+            this.idSelected=null
 
 
         },
