@@ -2,7 +2,20 @@
 
 ## Dynacert-builder
 
-## Project setup
+Dynacert builder is the administration component that allows:
+
+1) build the form
+
+[![Watch the video](https://img.youtube.com/vi/b3fANQYCEQk/0.jpg)](https://youtu.be/b3fANQYCEQk)
+
+2) Place the fields on the page
+
+[![Watch the video](https://img.youtube.com/vi/lp_BxYJYdWQ/0.jpg)](https://youtu.be/lp_BxYJYdWQ)
+
+3) have a preview of the online form
+
+#### Project setup
+
 ```
 npm install
 ```

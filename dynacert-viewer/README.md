@@ -2,7 +2,13 @@
 
 ## Dynacert-viewer
 
-## Project setup
+is the part reserved for the user to fill in the form, his signature and download the pdf with the compiled data.
+
+[![Watch the video](https://img.youtube.com/vi/xRRvHbS7ZG4/0.jpg)](https://youtu.be/xRRvHbS7ZG4)
+
+
+#### Project setup
+
 ```
 npm install
 ```
