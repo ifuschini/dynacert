@@ -1,6 +1,6 @@
 ![Dynacert](https://raw.githubusercontent.com/ifuschini/dynacert/master/dynacert-builder/public/images/logo.png)
 
-## Dynacert-viewer
+## Dynacert-builder
 
 ## Project setup
 ```
