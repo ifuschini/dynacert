@@ -55,10 +55,14 @@ class SecurityController extends AbstractController
         if (($session->get('login')) && $session->get('login')=='true') {
             $response=true;
         } 
+        $user = $this->getUser();
+        $roles= null;
+        if ($user != null ) $roles=$user->getRoles();
         return $this->json([
             // The getUserIdentifier() method was introduced in Symfony 5.3.
             // In previous versions it was called getUsername()
-            'islogged' => $response
+            'islogged' => $response,
+            'roles' => $roles,
         ]);
     }
 }
