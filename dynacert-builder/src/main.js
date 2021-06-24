@@ -20,18 +20,20 @@ Vue.prototype.config = {
   productName: "Dyna-Cert Builder",
   timeCheck: 5000,
   recaptchaId: '<captha id>',
-  //serviceBaseUrl: "http://localhost/builder/",
-  serviceBaseUrl:'/api/',
+  serviceBaseUrl: "http://localhost/api/",
+  //serviceBaseUrl:'/api/',
   url: {
-    listForms: "form",
-    getForm: "form/",
-    saveForm: "form/insert/",
-    saveFormMap: "map/insert/",
-    saveCategory: "category/insert/",
-    listCategory: "category",
-    deleteCategory: "category/delete/",
-    modifyCategory: "category/update/",
-    getMap: "map/",
+    listForms: "admin/form",
+    getForm: "admin/form/",
+    saveForm: "admin/form/insert/",
+    saveFormMap: "admin/map/insert/",
+    saveCategory: "admin/category/insert/",
+    listCategory: "admin/category",
+    deleteCategory: "admin/category/delete/",
+    modifyCategory: "admin/category/update/",
+    getMap: "admin/map/",
+    login: "login",
+    logout: "logout",
   },
   demo: false,
   timeChecksession: 30000,
@@ -49,9 +51,12 @@ Vue.use(VueGtag, {
   config: { id: "G-XK6NPR75TT" }
 });
 Vue.use(VueMask)
-
+Vue.prototype.$isAuthenticated = { value: false };
 Vue.config.productionTip = false
-
+Vue.prototype.dynaLogout = (object) => {
+  if (localStorage.logedin) object.$router.push({ name: 'Login' })
+  localStorage.removeItem('logedin');
+}
 const app = new Vue({
   el: "#app",
   router,

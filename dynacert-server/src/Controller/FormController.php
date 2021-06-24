@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FormController extends AbstractController
 {
     /**
-     * @Route("/form", methods={"GET"}, name="form")
+     * @Route("/admin/form", methods={"GET"}, name="form")
      */
     public function index(): Response
     {
@@ -21,7 +21,7 @@ class FormController extends AbstractController
         ]);
     }
     /**
-     * @Route("/form/{id}",methods={"GET"}, name="getConfigurationForm")
+     * @Route("/admin/form/{id}",methods={"GET"}, name="getConfigurationForm")
      */
     public function getConfigurationForm($id)
     {
@@ -34,7 +34,7 @@ class FormController extends AbstractController
         ]);  
     }
     /**
-     * @Route("/form/insert/",methods={"POST"}, name="saveForm")
+     * @Route("/admin/form/insert/",methods={"POST"}, name="saveForm")
      */
     public function insertForm(Request $request)
     {

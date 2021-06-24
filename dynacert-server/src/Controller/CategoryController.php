@@ -12,17 +12,18 @@ use Symfony\Component\HttpFoundation\Request;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="showCategory")
+     * @Route("/admin/category", name="showCategory")
      */
     public function index(): Response
     {
+        //$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $category = $this->getDoctrine()->getRepository(Category::class);
         return $this->json([
             'response' => $category->getCategories(),
         ]);
     }
     /**
-     * @Route("/category/update/",methods={"PUT"}, name="updateCategory")
+     * @Route("/admin/category/update/",methods={"PUT"}, name="updateCategory")
      */
     public function update(Request $request)
     {
@@ -40,7 +41,7 @@ class CategoryController extends AbstractController
 
     }
     /**
-     * @Route("/category/insert/",methods={"POST"}, name="insertCategory")
+     * @Route("/admin/category/insert/",methods={"POST"}, name="insertCategory")
      */
     public function insert(Request $request)
     {
@@ -58,7 +59,7 @@ class CategoryController extends AbstractController
 
     }
     /**
-     * @Route("/category/delete/{id}",methods={"DELETE"}, name="deleteCategory")
+     * @Route("/admin/category/delete/{id}",methods={"DELETE"}, name="deleteCategory")
      */
     public function delete($id)
     {

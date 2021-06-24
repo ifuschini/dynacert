@@ -82,7 +82,8 @@ export default {
                     //alert('Salvataggio avvenuto con successo')
                 })
                 .catch (e=> {
-                            this.error=e;
+                    this.dynaLogout(this)
+                    this.error=e;
                 })
 
         },

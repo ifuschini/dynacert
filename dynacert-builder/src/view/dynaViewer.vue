@@ -76,6 +76,7 @@ export default {
             this.listForms = response.data.response
          })
         .catch(e => {
+            this.dynaLogout(this)
             this.error = e;
       })
     },
@@ -93,6 +94,7 @@ export default {
           
          })
         .catch(e => {
+            this.dynaLogout(this)
             this.error = e;
       })
     },

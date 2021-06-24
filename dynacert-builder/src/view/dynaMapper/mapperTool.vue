@@ -245,6 +245,7 @@ export default {
                         this.listForms = response.data.response
                     })
                     .catch(e => {
+                        this.dynaLogout(this)
                         this.error = e;
                 })
         },
@@ -277,6 +278,7 @@ export default {
                 this.getMap(event.target.value)         
             })
             .catch(e => {
+                this.dynaLogout(this)
                 this.error = e;
         })
         },
@@ -303,6 +305,7 @@ export default {
                     this.$emit('changeConfig',this.formMap)                
                 })
                 .catch(e => {
+                    this.dynaLogout(this)
                     this.error = e;
             })
         },

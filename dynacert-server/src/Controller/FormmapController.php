@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FormmapController extends AbstractController
 {
     /**
-     * @Route("/map/{id}",methods={"GET"}, name="getMap")
+     * @Route("/admin/map/{id}",methods={"GET"}, name="getMap")
      */
     public function index($id): Response
     {
@@ -41,7 +41,7 @@ class FormmapController extends AbstractController
                
     }
     /**
-     * @Route("/map/insert/",methods={"POST"}, name="saveMap")
+     * @Route("/admin/map/insert/",methods={"POST"}, name="saveMap")
      */
     public function saveMap(Request $request)
     {

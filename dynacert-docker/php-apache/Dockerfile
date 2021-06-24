@@ -11,6 +11,7 @@ RUN a2enmod proxy_http
 COPY conf/apache-httpd.conf /etc/apache2/sites-enabled/000-default.conf
 
 
+
 #RUN curl --insecure https://getcomposer.org/composer.phar -o /usr/bin/composer && chmod +x /usr/bin/composer
 
 #RUN curl -sS https://get.symfony.com/cli/installer | bash

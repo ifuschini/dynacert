@@ -1,9 +1,7 @@
 version: "3.7"
 
 services:
-        php-apache:
-                container_name:
-                        webserver
+        webserver:
                 image:
                         webserver
                 environment: 
@@ -16,7 +14,7 @@ services:
                         - ./html:/var/www/html
                         - ./conf:/var/www/conf
                 links:
-                        - 'mariadb'
+                        - 'db'
                 restart:
                         always
                 networks:
@@ -26,8 +24,6 @@ services:
                         be: "symfony"
 
         symfony:
-                container_name:
-                        symfony
                 image:
                         symfony
                 environment: 
@@ -39,20 +35,14 @@ services:
                 volumes:
                         - ../dynacert-server:/var/dynacert-server
                 links:
-                        - 'mariadb'
+                        - 'db'
                 restart:
                         always
                 networks:
                         - my-net
                 environment:
                         dbhost: "db"
-
-
-
-
-        mariadb:
-                container_name:
-                        db
+        db:
                 image:
                         db
                 ports:

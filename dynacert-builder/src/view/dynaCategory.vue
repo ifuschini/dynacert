@@ -90,6 +90,7 @@ export default {
                         this.arrayCategory=response.data.response
                     })
                     .catch (e=> {
+                                this.dynaLogout(this)
                                 this.error=e;
                     })
             
@@ -117,7 +118,8 @@ export default {
                         this.arrayCategory=response.data.response
                     })
                     .catch (e=> {
-                                this.error=e;
+                        this.dynaLogout(this)
+                        this.error=e;
                     })
         },
         getCategories() {
@@ -131,6 +133,7 @@ export default {
                     this.arrayCategory=response.data.response
                 })
                 .catch(e => {
+                    this.dynaLogout(this)
                     this.error = e;
             })
         },
@@ -162,7 +165,8 @@ export default {
 
                     })
                     .catch (e=> {
-                                this.error=e;
+                        this.dynaLogout(this)
+                        this.error=e;
                     })
         }  
         

@@ -356,6 +356,7 @@ export default {
                 
                 })
                 .catch(e => {
+                    this.dynaLogout(this)
                     this.error = e;
             })
         },
@@ -364,13 +365,16 @@ export default {
             this.formTitle = ''
         },
         getForms (listforms=null) {
+            serverBus.$emit('showLoader',true)
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.listForms)
                 .then(response => {
+                     serverBus.$emit('showLoader',false)
                     this.listForms = response.data.response
                     this.formTitle = ''
                 })
                 .catch(e => {
+                    this.dynaLogout(this)
                     this.error = e;
             })
         },

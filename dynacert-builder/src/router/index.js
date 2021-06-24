@@ -8,6 +8,8 @@ import dynaCategory from "../view/dynaCategory.vue"
 import singlePage from "../view/viewer/singlePage"
 import allDyna from "../view/viewer/allDyna"
 import page404 from "../view/pages/404";
+import login from "../view/pages/login";
+
 
 
 
@@ -26,25 +28,25 @@ const router = new Router({
                     path: "dynaManager",
                     name: "manager",
                     component: dynaManager,
-                    meta: { requiresAuth: false },
+                    meta: { requiresAuth: true },
                 },
                 {
                     path: "dynaViewer",
                     name: "viewer",
                     component: dynaViewer,
-                    meta: { requiresAuth: false },
+                    meta: { requiresAuth: true },
                 },
                 {
                     path: "dynaMapper",
                     name: "mapper",
                     component: dynaMapper,
-                    meta: { requiresAuth: false },
+                    meta: { requiresAuth: true },
                 },
                 {
                     path: "dynaCategory",
                     name: "category",
                     component: dynaCategory,
-                    meta: { requiresAuth: false },
+                    meta: { requiresAuth: true },
                 },
             ],
         },
@@ -70,6 +72,11 @@ const router = new Router({
                     component: allDyna,
                 }, 
                 {
+                    path: "login",
+                    name: "Login",
+                    component: login,
+                },
+                {
                     path: "404",
                     name: "Page404",
                     component: page404,
@@ -83,4 +90,29 @@ const router = new Router({
     ],
 });
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+router.beforeEach((to, from, next) => {
+    //read cookie
+    let check=false
+    if (localStorage.logedin) check=true
+    if (to.name !== "Login" && to.meta.requiresAuth == true && check == false ) {
+        next({ name: "Login" });
+    }
+    else next();
+});
 export default router;
+

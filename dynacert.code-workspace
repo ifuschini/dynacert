@@ -11,6 +11,9 @@
     },
     {
       "path": "dynacert-server"
+    },
+    {
+      "path": "dynacert-kubernetes"
     }
   ]
 }

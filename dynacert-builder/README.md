@@ -42,3 +42,8 @@ npm run devdocker
 npm run builddocker
 ```
 
+#### Login access
+
+**Username**: admin
+
+**Password**: admin

@@ -98,6 +98,12 @@ http://localhost/builder
 
 https://dyna-cert.org/builder/
 
+#### Login access
+
+**Username**: admin
+
+**Password**: admin
+
 ### Dyna-cert viewer
 
 is the part reserved for the user to fill in the form, his signature and download the pdf with the compiled data.
