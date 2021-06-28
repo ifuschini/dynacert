@@ -46,7 +46,7 @@ class FormController extends AbstractController
         $form = $this->getDoctrine()->getRepository(Form::class);
         $response=$form->insertForm($content);
         return $this->json([
-            'repsonse'=> $form->getForms()
+            'response'=> $form->getForms()
         ]);  
     }
 }

@@ -59,7 +59,7 @@ class FormRepository extends ServiceEntityRepository
         $formTitle=$json->formTitle;
         $idForm = $json->IDForm;
         $categorySelected = $json->categorySelected;
-        $sql = "INSERT INTO `form`(`title`, `config`,`category`) VALUES (:formTitle,:jsonString,:categorySelected)";
+        $sql = "INSERT INTO `form`(`title`, `config`,`category`,`date`) VALUES (:formTitle,:jsonString,:categorySelected,CURRENT_DATE())";
         $conn= $this->getEntityManager()->getConnection();
         $stmt=$conn->prepare($sql);
         $stmt->bindValue('formTitle',$formTitle);
