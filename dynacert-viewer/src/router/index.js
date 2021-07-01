@@ -4,7 +4,6 @@ import container from "../components/container.vue"
 import startPage from "../view/viewer.vue"
 import sign from "../view/sign.vue"
 import forms from "../view/forms.vue"
-import login from "../view/pages/login"
 import page404 from "../view/pages/404";
 import cookie from "../view/pages/cookie";
 

@@ -50,6 +50,10 @@ export default {
           name: 'Category',
           link: 'dynaCategory'
         },
+        {
+          name: 'Account',
+          link: 'dynaAccount'
+        },
       ]
 
     }

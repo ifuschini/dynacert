@@ -12,7 +12,7 @@
     <b-card-text>
       <b-alert show variant="danger" v-if="error!=null">{{error}}</b-alert>
       <b-input placeholder="username" v-model="username"/>
-      <b-input placeholder="password" v-model="password" style="margin-top:10px"/>
+      <b-input placeholder="password" v-model="password" style="margin-top:10px" type="password"/>
     </b-card-text>
 
     <b-button variant="primary" class="loginbutton" v-on:click="auth()">Login</b-button>

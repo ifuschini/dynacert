@@ -5,6 +5,7 @@ import dynaManager from "../view/dynaManager.vue"
 import dynaViewer from "../view/dynaViewer.vue"
 import dynaMapper from "../view/dynaMapper.vue"
 import dynaCategory from "../view/dynaCategory.vue"
+import dynaAccount from "../view/dynaAccount.vue"
 import singlePage from "../view/viewer/singlePage"
 import allDyna from "../view/viewer/allDyna"
 import page404 from "../view/pages/404";
@@ -46,6 +47,12 @@ const router = new Router({
                     path: "dynaCategory",
                     name: "category",
                     component: dynaCategory,
+                    meta: { requiresAuth: true },
+                },
+                {
+                    path: "dynaAccount",
+                    name: "account",
+                    component: dynaAccount,
                     meta: { requiresAuth: true },
                 },
             ],
