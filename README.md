@@ -98,11 +98,7 @@ http://localhost/builder
 
 https://dyna-cert.org/builder/
 
-#### Login access
-
-**Username**: admin
-
-**Password**: admin
+​		
 
 ### Dyna-cert viewer
 
