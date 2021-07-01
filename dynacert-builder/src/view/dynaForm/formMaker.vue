@@ -361,6 +361,7 @@ export default {
             })
         },
         updateListForms(listForms) {
+            console.log('updateListForms')
             this.listForms=listForms
             this.formTitle = ''
         },
@@ -461,20 +462,25 @@ export default {
         submitQuestion() {
             if (this.questionTitle.length == 0) {
                 this.alertQuestionMessage='Question title missing'
-                return false;
+                return false
             }
             if (this.optionsRowObject.length == 0 && this.objectFeature.showRowOptionValue==true) {
                 this.alertQuestionMessage='Raw option can not be empy'
-                return false;
+                return false
             }
             if (this.optionsColObject.length == 0 && this.objectFeature.showColOptionValue==true) {
                 this.alertQuestionMessage='Column option can not be empy'
-                return false;
+                return false
             }
             if (this.objectFeature.showMinMax == true && this.minValue !=null && this.maxValue !=null && parseInt(this.minValue) > parseInt(this.maxValue)) {
                 this.alertQuestionMessage='"Min" value cannot be greater thane "Max" value'
-                return false;
+                return false
             }
+            if (this.categorySelected==null) {
+                this.alertQuestionMessage='Please select a category for this form'
+                return false
+            }
+
             let minValueTosend=null
             let maxValueTosend=null
             if (!isNaN(parseInt(this.minValue))) {

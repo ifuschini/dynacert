@@ -154,8 +154,6 @@ export default {
                     console.log(response)
                     this.$refs.formMaker.updateListForms(response.data.response)
                     this.$refs.formMaker.init()
-                    //this.showTreeView=true
-                    //alert('Salvataggio avvenuto con successo')
                 })
                 .catch (e=> {
                     this.dynaLogout(this)
