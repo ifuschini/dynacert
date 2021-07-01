@@ -30,7 +30,7 @@ class Form
     /**
      * @ORM\Column(type="json")
      */
-    private $config = [];
+    private $config;
 
     /**
      * @ORM\Column(type="datetime")
@@ -66,14 +66,14 @@ class Form
         return $this;
     }
 
-    public function getConfig(): ?array
+    public function getConfig(): ?string
     {
         return $this->config;
     }
 
-    public function setConfig(array $config): self
+    public function setConfig(string $config): self
     {
-        $this->config = $config;
+        $this->config = json_decode($config);
 
         return $this;
     }

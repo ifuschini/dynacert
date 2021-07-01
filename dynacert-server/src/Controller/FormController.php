@@ -40,13 +40,22 @@ class FormController extends AbstractController
     {
         $parametersAsArray = [];
         $content=null;
-        if ($content = $request->getContent()) {
-            $parametersAsArray = json_decode($content, true);
-        }
-        $form = $this->getDoctrine()->getRepository(Form::class);
-        $response=$form->insertForm($content);
+        $content = $request->getContent();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Form::class);
+        $form= new Form();
+        $json = json_decode($content);
+        $formTitle=$json->formTitle;
+        $idForm = $json->IDForm;
+        $categorySelected = $json->categorySelected;
+        $form->setTitle($formTitle);
+        $form->setCategory($categorySelected);
+        $form->setConfig($content);
+        $form->setDate(new \DateTime('now'));
+        $entityManager->persist($form);
+        $entityManager->flush();
         return $this->json([
-            'response'=> $form->getForms()
+            'response'=> $repository->getForms()
         ]);  
     }
 }

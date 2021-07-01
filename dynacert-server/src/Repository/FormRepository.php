@@ -52,19 +52,4 @@ class FormRepository extends ServiceEntityRepository
             ->fetchAllAssociative()
             ;
     }
-
-    public function insertForm(string $jsonString) {
-        $json = json_decode($jsonString);
-        $form=$json->form;
-        $formTitle=$json->formTitle;
-        $idForm = $json->IDForm;
-        $categorySelected = $json->categorySelected;
-        $sql = "INSERT INTO `form`(`title`, `config`,`category`,`date`) VALUES (:formTitle,:jsonString,:categorySelected,CURRENT_DATE())";
-        $conn= $this->getEntityManager()->getConnection();
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue('formTitle',$formTitle);
-        $stmt->bindValue('jsonString',$jsonString);
-        $stmt->bindValue('categorySelected',$categorySelected);
-        $stmt->executeQuery();
-    }
 }

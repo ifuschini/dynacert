@@ -18,7 +18,7 @@ class Formpdfimage
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=300000, nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      */
     private $images;
 

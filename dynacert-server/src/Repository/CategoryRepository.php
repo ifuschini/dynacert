@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Category|null updateCategory(string $id,string $name)
+ * @method Category[] getCategories()
  */
 class CategoryRepository extends ServiceEntityRepository
 {
@@ -22,9 +23,6 @@ class CategoryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-
-
-
     }
 
     public function updateCategory(string $id,string $name) {
@@ -46,13 +44,5 @@ class CategoryRepository extends ServiceEntityRepository
             ->setParameter('id', $id)
             ->getQuery()
             ->execute();
-    }
-
-    public function insertCategory(string $name) {
-        $sql = "INSERT INTO `category`(`name`) VALUES (:name) LIMIT 1";  
-        $conn= $this->getEntityManager()->getConnection();
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue('name',$name);
-        $stmt->executeQuery();
     }
 }

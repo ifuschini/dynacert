@@ -16,8 +16,8 @@ class FormmapController extends AbstractController
      */
     public function index($id): Response
     {
-        $formMap = $this->getDoctrine()->getRepository(Formmap::class);
-        $response=$formMap->getMaps($id);
+        $formMapRepository = $this->getDoctrine()->getRepository(Formmap::class);
+        $response=$formMapRepository->getMaps($id);
         $jsonmap = array();
         $imagesMap= array();
         if (count($response)==1) {
@@ -26,7 +26,6 @@ class FormmapController extends AbstractController
             if (is_array($map) == FALSE) {
                 $jsonmap = json_decode($map,true);
                 if (is_string($jsonmap)) $jsonmap = json_decode($jsonmap);
-            
             } 
             if (is_array($images) ==FALSE) {
                 $imagesMap=json_decode($images);  
@@ -47,33 +46,39 @@ class FormmapController extends AbstractController
     {
         $parametersAsArray = [];
         $content=null;
+        $entityManager = $this->getDoctrine()->getManager();
         if ($content = $request->getContent()) {
             $parametersAsArray = json_decode($content, true);
         }
-        $formMap = $this->getDoctrine()->getRepository(Formmap::class);
-        $formMap = $this->getDoctrine()->getRepository(Formmap::class);
-        $map = $formMap->findOneBy(array('formid' => $parametersAsArray['formId']));
+        $map=$entityManager->getRepository(Formmap::class)->findOneBy(array('formid' => $parametersAsArray['formId']));
         if ($map) {
-            //updateMap
-            $formMap->updateMap($parametersAsArray['formId'],$parametersAsArray['map']);
+            $map->setFormId($parametersAsArray['formId']);
+            $map->setMap($parametersAsArray['map']);
+            $entityManager->flush();
         } else {
-            //insertMap
-            $formMap->saveMap($parametersAsArray['formId'],$parametersAsArray['map']);
+            $formMap=new Formmap();
+            $formMap->setFormId($parametersAsArray['formId']);
+            $formMap->setMap($parametersAsArray['map']);
+            $entityManager->persist($formMap);
+            $entityManager->flush();
         }
-        $formPdfImage = $this->getDoctrine()->getRepository(Formpdfimage::class);
-        $image = $formPdfImage->findOneBy(
-            array('formid' => $parametersAsArray['formId'])
-        );
-        $response='no';
+        $image=$entityManager->getRepository(Formpdfimage::class)->findOneBy(array('formid' => $parametersAsArray['formId']));
+        $response='ok';
         if ($image) {
             //updateMap
-            $formPdfImage->updateImages($parametersAsArray['formId'],$parametersAsArray['images']);
+            $image->setFormId($parametersAsArray['formId']);
+            $image->setImages($parametersAsArray['images']);
+            $entityManager->flush();
         } else {
-            //insertMap
-            $formPdfImage->saveImages($parametersAsArray['formId'],$parametersAsArray['images']);
+            $formPdfImage=new Formpdfimage();
+            $formPdfImage->setFormId($parametersAsArray['formId']);
+            $formPdfImage->setImages($parametersAsArray['images']);
+            $formPdfImage->setDate(new \DateTime('now'));
+            $entityManager->persist($formPdfImage);
+            $entityManager->flush();
         }
         return $this->json([
-            'response'=> $response
+            'response'=> $response,
         ]);
     }
 

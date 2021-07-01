@@ -28,25 +28,4 @@ class FormmapRepository extends ServiceEntityRepository
             ->fetchAllAssociative()
             ;
     }
-    public function saveMap(string $formId,string $map) {
-        $sql = "INSERT INTO `formMap`(`formId`, `map`) VALUES (:formId,:map)";
-        $conn= $this->getEntityManager()->getConnection();
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue('formId',$formId);
-        $stmt->bindValue('map',$map);
-        $stmt->executeQuery();
-
-    }
-
-    public function updateMap(string $formId,string $map) {
-        $this->createQueryBuilder('f')
-            ->update()
-            ->set('f.map',':map')
-            ->setParameter('map', $map)
-            ->andWhere('f.formid= :formid')
-            ->setParameter('formid', $formId)
-            ->getQuery()
-            ->execute();
-
-    }
 }

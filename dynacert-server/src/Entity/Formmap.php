@@ -16,9 +16,8 @@ class Formmap
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
-     * @ORM\Column(type="string", length=300000, nullable=true)
+     * @ORM\Column(type="json", length=300000, nullable=true)
      */
     private $map;
 

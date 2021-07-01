@@ -18,15 +18,6 @@ class FormpdfimageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Formpdfimage::class);
     }
-    public function saveImages(string $formId,string $images) {
-        $sql = "INSERT INTO `formPdfImage`(`formId`, `images`) VALUES (:formId,:images)";
-        $conn= $this->getEntityManager()->getConnection();
-        $stmt=$conn->prepare($sql);
-        $stmt->bindValue('formId',$formId);
-        $stmt->bindValue('images',$images);
-        $stmt->executeQuery();
-
-    }
 
     public function updateImages(string $formId,string $images) {
         $this->createQueryBuilder('f')

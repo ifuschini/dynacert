@@ -50,10 +50,15 @@ class CategoryController extends AbstractController
         if ($content = $request->getContent()) {
             $parametersAsArray = json_decode($content, true);
         }
-        $category = $this->getDoctrine()->getRepository(Category::class);
-        $category->insertCategory($parametersAsArray['category']);
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $category=new Category();
+        $category->setName($parametersAsArray['category']);
+       
+        $entityManager->persist($category);
+        $entityManager->flush();
         return $this->json([
-            'response' => $category->getCategories(),
+            'response' => $repository->getCategories(),
 
         ]);
 
@@ -63,10 +68,17 @@ class CategoryController extends AbstractController
      */
     public function delete($id)
     {
-        $category = $this->getDoctrine()->getRepository(Category::class);
-        $category->deleteCategory($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $category=$entityManager->getRepository(Category::class)->find($id);
+        if (!$category) {
+            throw $this->createNotFoundException(
+                'No category found for id '.$id
+            );
+        }
+        $entityManager->remove($category);
+        $entityManager->flush();        
         return $this->json([
-            'response' => $category->getCategories(),
+            'response' => $this->getDoctrine()->getRepository(Category::class)->getCategories(),
         ]);
     }
 }
