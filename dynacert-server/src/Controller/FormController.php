@@ -47,9 +47,11 @@ class FormController extends AbstractController
         $formTitle=$json->formTitle;
         $idForm = $json->IDForm;
         $categorySelected = $json->categorySelected;
-        $form=$entityManager->getRepository(Form::class)->find($idForm);
-        if (!$form) {
+        $form=null;
+        if ($idForm == null) {
             $form= new Form();
+        } else {
+            $form=$entityManager->getRepository(Form::class)->find($idForm);
         }
         $form->setTitle($formTitle);
         $form->setCategory($categorySelected);
