@@ -34,7 +34,7 @@ class FormController extends AbstractController
         ]);  
     }
     /**
-     * @Route("/admin/form/insert/",methods={"POST"}, name="saveForm")
+     * @Route("/admin/form/save/",methods={"POST","PUT"}, name="saveForm")
      */
     public function insertForm(Request $request)
     {
@@ -43,11 +43,14 @@ class FormController extends AbstractController
         $content = $request->getContent();
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $this->getDoctrine()->getRepository(Form::class);
-        $form= new Form();
         $json = json_decode($content);
         $formTitle=$json->formTitle;
         $idForm = $json->IDForm;
         $categorySelected = $json->categorySelected;
+        $form=$entityManager->getRepository(Form::class)->find($idForm);
+        if (!$form) {
+            $form= new Form();
+        }
         $form->setTitle($formTitle);
         $form->setCategory($categorySelected);
         $form->setConfig($content);
