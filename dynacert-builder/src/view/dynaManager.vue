@@ -9,6 +9,7 @@
                     v-on:loadSavedQuestion="loadSavedQuestion"
                     v-on:addQuestion="addQuestion"
                     v-on:saveForm="saveForm"
+                    v-on:clearForm="clearForm"
                 />
             </b-col>
             <b-col sm="6" >
@@ -110,6 +111,9 @@ export default {
             console.log(newJson)
             this.form.push(newJson)
             // handle json changes
+        },
+        clearForm() {
+            this.form=[]
         },
         onChangeJsonOrder(e) {
             console.log('onChangeJsonOrder received')

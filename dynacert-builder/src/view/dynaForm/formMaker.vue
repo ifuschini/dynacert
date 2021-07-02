@@ -7,7 +7,7 @@
                                 <strong>Load Form saved</strong> 
                     </template>
                     <b-card-text>
-                            <select v-on:change="getForm(fileSelected)" v-model="fileSelected" class="form-control">
+                            <select v-on:change="getForm(formSelected)" v-model="formSelected" class="form-control">
                                 <option  :value="null">---- Select a form ----</option>
                                 <option v-for="(form,index) in listForms" v-bind:key="index" :value="index">{{form.title}}({{form.id}})</option>
                             </select>
@@ -16,9 +16,13 @@
                 </b-card>
                 <b-card>
                     <template #header>
-                                <strong>Create Form</strong> 
-                                            <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="IDSelected != null" v-on:click="submitlocalForm('update')"><b-icon icon="check-circle"/> Update Form</b-button>
+                                <strong>Create Form --{{idSelected}}--</strong>
+                                            
+                                            <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="idSelected != null" v-on:click="submitlocalForm('update')"><b-icon icon="arrow-clockwise"/> Update Form</b-button>
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="success" v-on:click="submitlocalForm('new')"><b-icon icon="check-circle"/> Submit new Form</b-button>
+                                            <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="secondary" v-on:click="init('cancel')">
+                                                <b-icon icon="x-circle"/> 
+                                            Cancel</b-button>
                     </template>
                             <b-card-text>
                                 <b-row>
@@ -309,10 +313,10 @@ export default {
             smOptionValue: 12,
             smOptionValueRow: 11,
             listForms:[],
-            fileSelected: null,
+            formSelected: null,
             typeSelected: null,
             typeOfContent: null,
-            IDSelected: null,
+            idSelected: null,
             arrayCategory: [],
             categorySelected: null,
         }
@@ -326,14 +330,21 @@ export default {
     watch: {
     },
     methods: {
-        init() {
+        init(action) {
             //define type of object to show
-            console.log('init')
+            console.log('init action:' + action)
             this.typeOfField= Object.keys(this.typeOfForm)
             this.typeSelected=this.typeOfField[0]
+            if (action=='cancel') {
+                this.categorySelected=null
+                this.idSelected=null
+                this.formSelected=null
+                this.$emit('clearForm')
+
+            } 
             this.changeType()
             this.questionTitle=''
-            this.formTitle=''
+            if (action==null) this.formTitle=''
             this.optionsRowObject=[]
             this.optionsColObject=[]
             this.isMandatory=false
@@ -507,7 +518,7 @@ export default {
             this.$emit('addQuestion',
                 objToSave
             )
-            this.init()
+            this.init('newfield')
         },
         submitlocalForm (action) {
             if (this.config.demo==true) {
@@ -517,12 +528,12 @@ export default {
                 this.alertFormMessage='Attention! the name of the form can not be empty'
                 return false;
             }
-            let IDSelected=this.idSelected
-            if (action=='new') IDSelected=null
+            let idSelected=this.idSelected
+            if (action=='new') idSelected=null
             this.alertFormMessag=''
             this.$emit('saveForm',
                 this.formTitle,
-                IDSelected,
+                idSelected,
                 this.categorySelected,
             )
             this.idSelected=null
