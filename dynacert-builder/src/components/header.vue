@@ -35,6 +35,7 @@ export default {
     methods: {
         sideBar() {
             serverBus.$emit('sideBar','toggled')
+            serverBus.$emit('showIcon',null)
         },
         logout() {
             axios

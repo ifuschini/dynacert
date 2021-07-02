@@ -536,7 +536,7 @@ export default {
                 idSelected,
                 this.categorySelected,
             )
-            this.idSelected=null
+            if (action != 'update') this.idSelected=null
 
 
         },
