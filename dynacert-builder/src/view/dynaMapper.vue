@@ -62,6 +62,7 @@ export default {
                 alert('is a demo')
                 return false
             }
+
             serverBus.$emit('showLoader',true)
             axios
                 .post(this.config.serviceBaseUrl + this.config.url.saveFormMap,{
@@ -85,7 +86,6 @@ export default {
                     this.dynaLogout(this)
                     this.error=e;
                 })
-
         },
 
 
