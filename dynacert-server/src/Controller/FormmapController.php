@@ -35,9 +35,7 @@ class FormmapController extends AbstractController
         return $this->json([
                 'map' => $jsonmap,
                 'images' => $imagesMap,
-            ]);
-            
-               
+            ]);   
     }
     /**
      * @Route("/admin/map/insert/",methods={"POST"}, name="saveMap")
