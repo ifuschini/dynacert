@@ -2,7 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from "@/router"
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBuilding, faCopyright, faDraftingCompass, faEye, faUsers, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueMask from 'v-mask'
 import VueGtag from "vue-gtag";
 import italian from '@/languages/italian'
@@ -10,6 +13,8 @@ import english from '@/languages/english'
 import VueKonva from 'vue-konva'
 
 Vue.use(VueKonva)
+library.add(faUsers,faBuilding,faDraftingCompass,faEye)
+library.add(faCopyright)
 
 
 
