@@ -16,9 +16,15 @@
         </b-form-invalid-feedback>
         <b-form-input id="input-none" :state="checkPassword" placeholder="password" v-model="password" style="margin-top:5px"></b-form-input>     
         <b-form-input id="input-none" :state="password == confirmPassword && confirmPassword != ''" :disabled="!checkPassword"  placeholder="confirm password" v-model="confirmPassword" style="margin-top:5px"></b-form-input>
-        <b-form-select v-model="selectedRole" :options="roles" :disabled="isModifyType" style="margin-top:5px"></b-form-select>
+        <b-form-select 
+            v-model="selectedRole" 
+            :options="roles" 
+            :disabled="isModifyType" 
+            style="margin-top:5px" 
+            class="form-control"
+        ></b-form-select>
       </div>
-      <b-button size="sm" variant="warning" block @click="sendData()" :disabled="disableButton" style="flow:right;margin-top:5px;">{{labelButtonAction}}</b-button>
+      <b-button size="sm" variant="warning" block @click="sendData()" :disabled="disableButton" style="flow:right;margin-top:5px;" >{{labelButtonAction}}</b-button>
       
     </b-modal>
   </div>

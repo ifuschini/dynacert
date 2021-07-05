@@ -70,7 +70,7 @@
                             <img :src="file" :class="page==index?'fileImage-selected' : 'fileImage'" v-if="file != null" />
                             <div class="preview" v-if="file == null"/>
                         </div>
-                            <span v-on:click='deleteItem(index)' v-if="file != null" style="cursor:pointer">Cancella</span>
+                            <span v-on:click='deleteItem(index)' v-if="file != null" style="cursor:pointer">Delete</span>
                     </div>
                     <fileUpload
                             class="btn btn-info btn-sm"

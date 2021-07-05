@@ -1,16 +1,20 @@
 <template>
     <div class="bodyDynacert">
-		<div class="loader">
-		<span>Loading...</span>
-		</div>
+        <div class="preloader-2">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+        <span class="line line-4"></span>
+        <span class="line line-5"></span>
+        <span class="line line-6"></span>
+        <span class="line line-7"></span>
+        <span class="line line-8"></span>
+        <span class="line line-9"></span>
+        <div>Loading</div>
+        </div>
     </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
 
 <style>
 .bodyDynacert{
@@ -27,59 +31,64 @@ export default {
 	justify-content: center;
     opacity: 0.9;
 }
-
-.loader {
-    width: 10em;
-    height: 10em;
-    font-size: 25px;
-    box-sizing: border-box;
-    border-top: 0.3em solid hotpink;
-    border-radius: 50%;
-    position: relative;
-    animation: rotating 2s ease-in-out infinite;
-    --direction: 1;
+.preloader-2 {
+  margin: 120px auto 0;
 }
 
-.loader::before,
-.loader::after {
-    content: '';
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    border-radius: 50%;
-    box-sizing: border-box;
-    top: -0.2em;
+
+.preloader-1 .line {
+  width: 1px;
+  height: 12px;
+  background: #fff;
+  margin: 0 1px;
+  display: inline-block;
+  animation: opacity-1 1000ms infinite ease-in-out;
 }
 
-.loader::before {
-    border-top: 0.3em solid dodgerblue;
-    transform: rotate(120deg);
+.preloader-2 .line {
+  width: 1px;
+  height: 12px;
+  background: #fff;
+  margin: 0 1px;
+  display: inline-block;
+  animation: opacity-2 1000ms infinite ease-in-out;
 }
 
-.loader::after {
-    border-top: 0.3em solid gold;
-    transform: rotate(240deg);
+.preloader-1 .line-1, .preloader-2 .line-1 { animation-delay: 800ms; }
+.preloader-1 .line-2, .preloader-2 .line-2 { animation-delay: 600ms; }
+.preloader-1 .line-3, .preloader-2 .line-3 { animation-delay: 400ms; }
+.preloader-1 .line-4, .preloader-2 .line-4 { animation-delay: 200ms; }
+.preloader-1 .line-6, .preloader-2 .line-6 { animation-delay: 200ms; }
+.preloader-1 .line-7, .preloader-2 .line-7 { animation-delay: 400ms; }
+.preloader-1 .line-8, .preloader-2 .line-8 { animation-delay: 600ms; }
+.preloader-1 .line-9, .preloader-2 .line-9 { animation-delay: 800ms; }
+
+@keyframes opacity-1 { 
+  0% { 
+    opacity: 1;
+  }
+  50% { 
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1;
+  }  
 }
 
-.loader span {
-    position: absolute;
-    color: white;
-    width: inherit;
-    height: inherit;
-    text-align: center;
-    line-height: 10em;
-    font-family: sans-serif;
-    animation: rotating 2s linear infinite;
-    --direction: -1;
+@keyframes opacity-2 { 
+  0% { 
+    opacity: 1;
+    height: 15px;
+  }
+  50% { 
+    opacity: 0;
+    height: 12px;
+  }
+  100% { 
+    opacity: 1;
+    height: 15px;
+  }  
 }
 
-@keyframes rotating {
-    50% {
-        transform: rotate(calc(180deg * var(--direction)));
-    }
 
-    100% {
-        transform: rotate(calc(360deg * var(--direction)));
-    }
-}
 </style>

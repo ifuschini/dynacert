@@ -8,11 +8,11 @@
             <b-button
                 size="sm"
                 variant="primary"
+                style="margin-bottom:5px;"
                 v-on:click="showModal(null,'new')"
             >New Account</b-button>
         </b-col>
         </b-row>
-        <hr/>
         <center>
             <table width="50%" class="table table-striped">
                 <thead>

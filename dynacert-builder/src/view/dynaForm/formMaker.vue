@@ -7,7 +7,7 @@
                                 <strong>Load Form saved</strong> 
                     </template>
                     <b-card-text>
-                            <select v-on:change="getForm(formSelected)" v-model="formSelected" class="form-control">
+                            <select v-on:change="getForm(formSelected)" v-model="formSelected" class="form-control" size="sm">
                                 <option  :value="null">---- Select a form ----</option>
                                 <option v-for="(form,index) in listForms" v-bind:key="index" :value="index">{{form.title}}({{form.id}})</option>
                             </select>
@@ -18,8 +18,8 @@
                     <template #header>
                                 <strong>Create Form --{{idSelected}}--</strong>
                                             
-                                            <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="idSelected != null" v-on:click="submitlocalForm('update')"><b-icon icon="arrow-clockwise"/> Update Form</b-button>
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="success" v-on:click="submitlocalForm('new')"><b-icon icon="check-circle"/> Submit new Form</b-button>
+                                            <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="idSelected != null" v-on:click="submitlocalForm('update')"><b-icon icon="arrow-clockwise"/> Update Form</b-button>
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="secondary" v-on:click="init('cancel')">
                                                 <b-icon icon="x-circle"/> 
                                             Cancel</b-button>

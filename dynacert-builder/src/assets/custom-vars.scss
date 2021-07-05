@@ -8,6 +8,30 @@ $font-stack: 'Roboto Slab', serif;
 background: rgb(212, 211, 211);
 
 }
+html * {
+  font-family: 'Arial', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+@include placeholder {
+  text-transform: uppercase;
+}
+
+#table, th {
+  text-transform: uppercase;
+  text-align: center;
+}
+#select {
+  font-size: 10px!important;
+}
 
  #wrapper {
     overflow-x: hidden;
@@ -22,10 +46,18 @@ background: rgb(212, 211, 211);
   transition: margin .25s ease-out;
 }
 
+
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+    padding: 0rem 0rem;
+    font: 'Arial Bold', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top:25px;
+    margin-bottom:28px;
 }
+
+
 
 #sidebar-wrapper .list-group {
   width: 12rem;

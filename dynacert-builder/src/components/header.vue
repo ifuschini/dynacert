@@ -1,13 +1,14 @@
 <template>
     <div class="titleLogo info">
-         <b-button variant="secondary" v-on:click="sideBar()" style="margin-left:5px"><b-icon icon="list" size="sm"/></b-button>
+         <b-button variant="secondary" v-on:click="sideBar()" style="margin-left:5px" size="sm"><b-icon icon="list" /></b-button>
             <img src="images/logo.png" width="200" height="65" /> 
-         <b-button variant="secondary" v-on:click="logout()" class="logout">Logout</b-button>
+         <b-button variant="secondary" v-on:click="logout()" class="logout" size="sm">Logout</b-button>
+        <hr/>
     </div>
 </template>
 <style scoped>
     .titleLogo {
-        margin-bottom: 10px;
+        border-bottom: 5px red;
     }
 @media only screen and (max-width: 600px) {
   .info {
@@ -15,7 +16,7 @@
   }
 }
 .logout {
-    margin-top:10px;
+    margin-top:18px;
     margin-left:5px;
     margin-right:5px;
     float:right;

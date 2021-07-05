@@ -10,6 +10,7 @@
                     v-on:addQuestion="addQuestion"
                     v-on:saveForm="saveForm"
                     v-on:clearForm="clearForm"
+                    style="height: 100vh;"
                 />
             </b-col>
             <b-col sm="6" >

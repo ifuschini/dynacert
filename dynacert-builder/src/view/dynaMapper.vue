@@ -4,7 +4,8 @@
                 <dynaMapperTool
                     v-on:changeConfig="changeConfig"
                     v-on:saveMapper="saveMapper"
-                
+                    style="height: 100vh;"
+
                 />
             </b-tab>
             <b-tab title="Json Editor" @click.capture="changeTab(1)">

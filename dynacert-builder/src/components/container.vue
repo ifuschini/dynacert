@@ -21,6 +21,24 @@
   }
 }
 
+.btn {
+    padding: 7px 12px;
+    font-size: 15px;
+    border-radius: 7px;
+    text-transform: uppercase;
+}
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+.form-control {
+  font-size: 10px;
+}
+
+
+
 </style>
 
 
