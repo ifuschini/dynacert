@@ -256,31 +256,32 @@ export default {
             this.$emit('saveMapper', this.eventIdSelected,this.pdfBackground)
         },
         getForm(event) {
-        serverBus.$emit('showLoader',true)
-        console.log(event)
-        this.eventIdSelected=event.target.value
-        if (this.$refs.pdfMapper) this.$refs.pdfMapper.clearSelection()
-        if (event.target.value=='null') {
-            this.form=[]
-            this.pdfBackground=[]
-            this.eventIdSelected=null
-        }
-        axios
-            .get(this.config.serviceBaseUrl + this.config.url.getForm + event.target.value,{
+            console.log(event)
+            this.eventIdSelected=event.target.value
+            if (this.$refs.pdfMapper) this.$refs.pdfMapper.clearSelection()
+            if (event.target.value=='null') {
+                this.form=[]
+                this.pdfBackground=[]
+                this.eventIdSelected=null
+                return false
             }
-            )
-            .then(response => {
-                console.log(response)
-                serverBus.$emit('showLoader',false)
-                this.activeImage=null
-                this.page=null
-                this.form=JSON.parse(response.data.form)
-                this.getMap(event.target.value)         
+            serverBus.$emit('showLoader',true)
+            axios
+                .get(this.config.serviceBaseUrl + this.config.url.getForm + event.target.value,{
+                }
+                )
+                .then(response => {
+                    console.log(response)
+                    serverBus.$emit('showLoader',false)
+                    this.activeImage=null
+                    this.page=null
+                    this.form=JSON.parse(response.data.form)
+                    this.getMap(event.target.value)         
+                })
+                .catch(e => {
+                    this.dynaLogout(this)
+                    this.error = e;
             })
-            .catch(e => {
-                this.dynaLogout(this)
-                this.error = e;
-        })
         },
         getMap(id) {
             serverBus.$emit('showLoader',true)
