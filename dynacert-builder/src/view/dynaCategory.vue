@@ -106,6 +106,7 @@ export default {
                     return false
                 }
                 if (confirm('Do you want to delete this item ?') == false) return false
+                serverBus.$emit('showLoader',true)
                 axios
                     .delete(this.config.serviceBaseUrl + this.config.url.deleteCategory + id,{
                     headers: {
@@ -115,6 +116,7 @@ export default {
                     }
                     )
                     .then(response => {
+                        serverBus.$emit('showLoader',false)
                         this.arrayCategory=response.data.response
                     })
                     .catch (e=> {
@@ -123,6 +125,7 @@ export default {
                     })
         },
         getCategories() {
+            serverBus.$emit('showLoader',true)
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.listCategory ,{
                 params: {
@@ -130,6 +133,7 @@ export default {
                 }
                 )
                 .then(response => {
+                    serverBus.$emit('showLoader',false)
                     this.arrayCategory=response.data.response
                 })
                 .catch(e => {
@@ -146,6 +150,7 @@ export default {
                 alert('new category is empty' + this.newcategory)
                 return false
             }
+            serverBus.$emit('showLoader',true)
                 axios
                     .post(this.config.serviceBaseUrl + this.config.url.saveCategory,{
                         category: this.newcategory,
@@ -157,7 +162,7 @@ export default {
                     }
                     )
                     .then(response => {
-                        //serverBus.$emit('showLoader',false)
+                        serverBus.$emit('showLoader',false)
                         if (response.data.status=='ko') 
                             alert(response.data.message)
                         else

@@ -22,38 +22,45 @@
         </b-col>
         <b-col lg="5">
         <b-row>
-        <b-col lg="1">
+        <b-col lg="1" class="componentMapperTool">
         Form
             </b-col>
             <b-col>
-        <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" >
-            <option value="null">--- select a form --- </option>
-            <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
-        </select>
+                <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" >
+                    <option value="null">--- select a form --- </option>
+                    <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
+                </select>
             </b-col>
         </b-row>
-        <b-button variant="secondary" v-on:click="$refs.pdfMapper.clearSelection();$refs.listComponent.clearSelections()" size="sm">Clear</b-button>
-        <b-button variant="danger" v-on:click="$refs.pdfMapper.deleteSelection();$refs.listComponent.clearSelections()" style="margin-left:5px" size="sm">Delete</b-button>
-        <b-button variant="success" v-on:click="saveConfig()" style="margin-left:5px" size="sm">Save</b-button>
-        <!--b-button variant="success" v-on:click="$refs.pdfMapper.getSelection()" size="sm" style="float:right">Generate <b-icon icon="check-circle"/></b-button-->
-        <b-button variant="info" v-on:click="addDynaElement('today')" size="sm" style="float:right;margin-right:5px;">Add Today</b-button>
-        <b-button variant="warning" v-on:click="showSignForm=true" size="sm" style="float:right;margin-right:5px;">Sign</b-button>
-        <b-card style="margin-top:5px;" v-if="showSignForm==true">
-            <template #header>
-            Insert disclosure
-            </template>
-            <b-input type="text" placeholder="Button expand text title"  v-model="titleSign"/>
-            <b-form-textarea placeholder="Input your text"  cols="100"  rows="10" v-model="textSign" style="margin-top:5px;"/>        
-            <b-button variant="secondary" v-on:click="showSignForm=true;textSign=null;titleSign=null;" size="sm" style="float:close;margin-top:5px;">Cancel</b-button>
-            <b-button variant="warning" v-on:click="addDynaElement('sign')" size="sm" style="float:right;margin-top:5px;">Add Sign</b-button>
-        </b-card>
-        <listComponentMapper
-        ref="listComponent"
-        :form="form"
-        :canSelect="activeImage != null"
-        v-on:setField="setField"
-        style="margin-top:5px;"
-        />
+        <b-row v-if="this.form.length != 0">
+            <b-col>
+                <b-button variant="secondary" v-on:click="$refs.pdfMapper.clearSelection();$refs.listComponent.clearSelections()" size="sm">Clear</b-button>
+                <b-button variant="danger" v-on:click="$refs.pdfMapper.deleteSelection();$refs.listComponent.clearSelections()" style="margin-left:5px" size="sm">Delete</b-button>
+                <b-button variant="success" v-on:click="saveConfig()" style="margin-left:5px" size="sm">Save</b-button>
+            </b-col>
+            <b-col>
+                <b-button variant="info" v-on:click="addDynaElement('today')" size="sm" style="float:right;margin-right:5px;">Add Today</b-button>
+                <b-button variant="warning" v-on:click="showSignForm=true" size="sm" style="float:right;margin-right:5px;">Sign</b-button>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-card style="margin-top:5px;" v-if="showSignForm==true">
+                <template #header>
+                Insert disclosure
+                </template>
+                <b-input type="text" placeholder="Button expand text title"  v-model="titleSign"/>
+                <b-form-textarea placeholder="Input your text"  cols="100"  rows="10" v-model="textSign" style="margin-top:5px;"/>        
+                <b-button variant="secondary" v-on:click="showSignForm=true;textSign=null;titleSign=null;" size="sm" style="float:close;margin-top:5px;">Cancel</b-button>
+                <b-button variant="warning" v-on:click="addDynaElement('sign')" size="sm" style="float:right;margin-top:5px;">Add Sign</b-button>
+            </b-card>
+            <listComponentMapper
+            ref="listComponent"
+            :form="form"
+            :canSelect="activeImage != null"
+            v-on:setField="setField"
+            style="margin-top:5px;"
+            />
+        </b-row>
         </b-col>
         <b-col lg="2" >
 
@@ -101,7 +108,6 @@
     border-style: double;
     border-color:blue;
 }
-
 </style>
 
 <script>

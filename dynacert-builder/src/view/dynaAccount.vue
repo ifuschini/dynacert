@@ -49,6 +49,7 @@
 <script>
 import axios from 'axios'
 import modalModifyAccount from './dynaAccount/modalModifyAccount.vue'
+import { serverBus } from '../main'
 
 export default {
     created() {
@@ -111,11 +112,13 @@ export default {
         },
 
         deleteAccount(id) {
+
                 if (this.config.demo==true) {
                     alert('is a demo')
                     return false
                 }
                 if (confirm('Do you want to delete this item ?') == false) return false
+                serverBus.$emit('showLoader',true)
                 axios
                     .delete(this.config.serviceBaseUrl + this.config.url.deleteAccount + id,{
                     headers: {
@@ -126,13 +129,17 @@ export default {
                     )
                     .then(response => {
                         this.arrayAccounts=response.data.response
+                        serverBus.$emit('showLoader',false)
+
                     })
                     .catch (e=> {
+                        serverBus.$emit('showLoader',false)
                         this.dynaLogout(this)
                         this.error=e;
                     })
         },
         getAccounts() {
+            serverBus.$emit('showLoader',true)
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.listAccount ,{
                 params: {
@@ -140,6 +147,7 @@ export default {
                 }
                 )
                 .then(response => {
+                    serverBus.$emit('showLoader',false)
                     this.arrayAccounts=response.data.response
                 })
                 .catch(e => {
@@ -182,6 +190,7 @@ export default {
                     alert('is a demo')
                     return false
             }
+            serverBus.$emit('showLoader',true)
                 axios
                     .put(this.config.serviceBaseUrl + this.config.url.updateAccount,{
                         id: data.id,
@@ -194,7 +203,7 @@ export default {
                     }
                     )
                     .then(response => {
-                        //serverBus.$emit('showLoader',false)
+                        serverBus.$emit('showLoader',false)
                         if (response.data.status=='ko') 
                             alert(response.data.message)
                         else
@@ -202,6 +211,7 @@ export default {
 
                     })
                     .catch (e=> {
+                        serverBus.$emit('showLoader',false)
                         this.dynaLogout(this)
                         this.error=e;
                     })
