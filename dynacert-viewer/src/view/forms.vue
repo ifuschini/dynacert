@@ -17,6 +17,8 @@
 </template>
 <script>
 import axios from 'axios'
+import { serverBus } from '../main'
+
 export default {
     data() {
         return {
@@ -31,10 +33,14 @@ export default {
     },
     methods: {
         getForms () {
+            serverBus.$emit('showLoader',true)
+
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.listForms + this.categorySelected, {
                 })
                 .then(response => {
+                    serverBus.$emit('showLoader',false)
+
                     this.listForms = response.data.response
                 })
                 .catch(e => {
@@ -42,11 +48,14 @@ export default {
             })
         },
         getCategories() {
+            serverBus.$emit('showLoader',true)
+
             axios
                 .get(this.config.serviceBaseUrl + this.config.url.listCategory ,{
                 }
                 )
                 .then(response => {
+                    serverBus.$emit('showLoader',false)
                     console.log(response)
                     this.arrayCategory=response.data.response
                 

@@ -8,6 +8,39 @@ $font-stack: 'Roboto Slab', serif;
 background: rgb(212, 211, 211);
 
 }
+html * {
+  font-family: 'Arial', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+@include placeholder {
+  text-transform: uppercase;
+  font-size: 10px!important;
+}
+.bodyDynacert{
+  position: absolute;
+  top: 0px;
+  left:0px;
+	background-color: rgb(68, 66, 66);
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width:100vw;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+  opacity: 0.9;
+  z-index:99;
+}
+
 
 .menuButton {
     width: 40px;
@@ -55,27 +88,6 @@ background: rgb(212, 211, 211);
 .accepted-footera {
   float:right
 }
-#wrapper {
-    overflow-x: hidden;
- }
-
-#sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -45rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-}
-
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
-#sidebar-wrapper .list-group {
-  width: 10rem;
-}
 
 #page-content-wrapper {
   min-width: 100vw;
@@ -114,3 +126,15 @@ background: rgb(212, 211, 211);
   }
 }
 
+#btn {
+    padding: 7px 12px!important;
+    font-size: 10px!important;
+    border-radius: 7px;
+    text-transform: uppercase!important;
+}
+#btn-group-sm>.btn, .btn-sm  {
+    padding: 5px 10px!important;
+    font-size: 10px!important;
+    border-radius: 5px;
+    text-transform: uppercase!important;
+}

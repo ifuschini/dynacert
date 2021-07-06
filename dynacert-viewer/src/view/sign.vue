@@ -12,8 +12,8 @@
                             <img :src="mobileSignUrl" class="imageSignMobile" />
                         </div>
                         <br></br>
-                        <b-button  @click="clear" style="margin-right:20px;min-width:120px;margin-top:10px;margin-bottom:5px;">{{language[config.currentLanguage].cancel}}</b-button>                                            
-                        <b-button v-on:click="goNextSign()"   variant="success" style="min-width:120px;margin-top:10px;margin-bottom:5px;" :disabled='disableSignBtn'>{{btnLabel}}</b-button><br/>
+                        <b-button  @click="clear" size="sm" style="margin-right:20px;min-width:120px;margin-top:10px;margin-bottom:5px;">{{language[config.currentLanguage].cancel}}</b-button>                                            
+                        <b-button v-on:click="goNextSign()" size="sm"  variant="success" style="min-width:120px;margin-top:10px;margin-bottom:5px;" :disabled='disableSignBtn'>{{btnLabel}}</b-button><br/>
                         <b-alert v-if="showSignAlert" variant="danger" class="alertMessage" show>{{alertMessage}}</b-alert>
                     </b-collapse>
                     </div>
