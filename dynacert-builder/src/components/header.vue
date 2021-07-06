@@ -46,9 +46,11 @@ export default {
                 }
                 )
                 .then(response => {
+                    console.log(response)
                     this.dynaLogout(this)
                 })
                 .catch(e => {
+                    console.log(e)
                     this.dynaLogout(this)
             })
         }
