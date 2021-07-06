@@ -61,11 +61,6 @@ export default {
                 .then(response => {
                 this.form=response.data.form
                 serverBus.$emit('showLoader',false)
-                //localStorage.costumer=response.data.costumer
-                //localStorage.emailCostumer=response.data.emailCostumer
-                //localStorage.pdfBack=JSON.stringify(response.data.pdfBack)
-                //localStorage.pdfBack=JSON.stringify(response.data.images)
-                //localStorage.configPdf=JSON.stringify(response.data.configPdf)
                 localStorage.formConfig=JSON.stringify(response.data.form)
                 console.log('localStorage')
                 this.formTitle=response.data.title
