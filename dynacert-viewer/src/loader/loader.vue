@@ -1,85 +1,82 @@
 <template>
-    <div class="bodyUrc">
-		<div class="loader">
-		<span>Loading...</span>
-		</div>
+    <div class="bodyDynacert">
+        <div class="box">
+        <span class="loader"></span>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <span class="loaderText">Wait please....</span>
+        </div>
     </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
 
 <style>
-.bodyUrc{
-    position: absolute;
-    top: 0px;
-    left:0px;
-	background-color: rgb(182, 173, 173);
-	padding: 0;
-	margin: 0;
-	height: 100vh;
-	width:100vw;
-	display:flex;
-	align-items: center;
-	justify-content: center;
-    opacity: 0.9;
+.loaderText {
+  color:white;
+  align-content: center;
+  font-size:15px;
+  font-family: 'Arial Bold', sans-serif;
+  margin-left: 5rem;
 }
-
+.box {
+  margin: 120px auto 0;
+}
 .loader {
-    width: 10em;
-    height: 10em;
-    font-size: 25px;
-    box-sizing: border-box;
-    border-top: 0.3em solid hotpink;
-    border-radius: 50%;
-    position: relative;
-    animation: rotating 2s ease-in-out infinite;
-    --direction: 1;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 30px, 0 -30px;
+  border-radius: 4px;
+  background: currentColor;
+  display: block;
+  margin:auto;
+  position: relative;
+  color: #FFF;
+  transform: translateY(30px);
+  box-sizing: border-box;
+  animation: animloader 2s ease infinite;
 }
-
-.loader::before,
-.loader::after {
-    content: '';
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    border-radius: 50%;
-    box-sizing: border-box;
-    top: -0.2em;
-}
-
+.loader::after,
 .loader::before {
-    border-top: 0.3em solid dodgerblue;
-    transform: rotate(120deg);
+  content: '';  
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 30px, 0 -30px;
+  border-radius: 4px;
+  background: currentColor;
+  color: #FFF;
+  position: absolute;
+  left: 30px;
+  top: 0;
+  animation: animloader 2s 0.2s ease infinite;
+}
+.loader::before {
+  animation-delay: 0.4s;
+  left: 60px;
 }
 
-.loader::after {
-    border-top: 0.3em solid gold;
-    transform: rotate(240deg);
-}
-
-.loader span {
-    position: absolute;
+@keyframes animloader {
+  0% {
+    top: 0;
     color: white;
-    width: inherit;
-    height: inherit;
-    text-align: center;
-    line-height: 10em;
-    font-family: sans-serif;
-    animation: rotating 2s linear infinite;
-    --direction: -1;
+  }
+  50% {
+    top: 30px;
+    color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    top: 0;
+    color: white;
+  }
 }
+    
 
-@keyframes rotating {
-    50% {
-        transform: rotate(calc(180deg * var(--direction)));
-    }
-
-    100% {
-        transform: rotate(calc(360deg * var(--direction)));
-    }
-}
 </style>
