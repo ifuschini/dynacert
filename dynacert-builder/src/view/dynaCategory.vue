@@ -1,27 +1,31 @@
 <template>
   <div>
         <b-row>
-        <b-col sm="6">
-        </b-col>
-        <b-col sm="4">
-        <b-input
-            v-model="newcategory"
-            size="sm"
-            placeholder="insert new category"
-            style="float:right;margin-left:10px;margin-right:10px;"
-        />
-        </b-col>
-        <b-col sm="2">
-            <b-button
-                size="sm"
-                variant="primary"
-                v-on:click="saveCategory()"
-            >New Category</b-button>
-        </b-col>
+                <b-col sm="1"/>
+                <b-col sm="10">
+                    <div class="categoryClass" >
+                    <b-button
+                        size="sm"
+                        variant="primary"
+                        v-on:click="saveCategory()"
+                    >New Category</b-button>
+                    </div>
+                    <div class="categoryClass" style="min-width:25rem;margin-right:5px;">
+                    <b-input
+                        v-model="newcategory"
+                        size="sm"
+                        placeholder="insert new category"
+                        
+                    />
+                    </div>
+                </b-col>
+                <b-col sm="1"/>
         </b-row>
-        <hr/>
-        <center>
-            <table width="50%" class="table table-striped">
+        <b-row>
+        <b-col sm="1"/>
+        <b-col>
+
+            <table width="50%" class="table table-striped" >
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -40,9 +44,19 @@
                 </tr>
                 </tbody>
             </table>
-        </center>
+        </b-col>
+        <b-col sm="1"/>
+        </b-row>
   </div>
 </template>
+<style scoped>
+.categoryClass {
+    float:right;
+    align-items: flex-end;
+    margin-bottom: 5px;
+}
+</style>
+
 <script>
 import { serverBus } from '../main'
 import axios from 'axios'

@@ -8,10 +8,26 @@ $font-stack: 'Roboto Slab', serif;
 background: rgb(212, 211, 211);
 
 }
+
 html * {
   font-family: 'Arial', sans-serif;
   font-size: 10px;
   letter-spacing: 2px;
+}
+.bodyDynacert{
+  position: absolute;
+  top: 0px;
+  left:0px;
+	background-color: rgb(68, 66, 66);
+	padding: 0;
+	margin: 0;
+	height: 100vh;
+	width:100vw;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+  opacity: 0.9;
+  z-index:99;
 }
 
 @mixin placeholder {
@@ -23,6 +39,14 @@ html * {
 
 @include placeholder {
   text-transform: uppercase;
+  font-size: 10px!important;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 5px;
+  border-style: hidden; /* hide standard table (collapsed) border */
+  box-shadow: 0 0 0 1px #ced4da; /* this draws the table border  */ 
 }
 
 #table, th {
@@ -56,6 +80,20 @@ html * {
     margin-top:25px;
     margin-bottom:28px;
 }
+
+#btn {
+    padding: 7px 12px!important;
+    font-size: 10px!important;
+    border-radius: 7px;
+    text-transform: uppercase!important;
+}
+#btn-group-sm>.btn, .btn-sm  {
+    padding: 5px 10px!important;
+    font-size: 10px!important;
+    border-radius: 5px;
+    text-transform: uppercase!important;
+}
+
 
 
 

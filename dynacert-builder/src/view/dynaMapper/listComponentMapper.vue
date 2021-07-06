@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div v-if="question.obj.colOption.length>0">
-                        <b-table-simple>
+                        <b-table-simple outlined>
                             <b-thead>
                                 <th/>
                                 <b-th v-for="(coption, coptionIndex) in question.obj.olOption" v-bind:key="coptionIndex">
@@ -44,8 +44,10 @@
 </template>
 <style scoped>
 .title-question {
-    border-style: dashed;
+    border-style: solid;
     margin-top: 5px;
+    border-color: #ced4da;
+    border-width: 1px;
 }
 .scroll-area{
   width:100%;

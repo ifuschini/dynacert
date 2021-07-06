@@ -1,20 +1,20 @@
 <template>
   <div>
         <b-row>
-        <b-col sm="6">
-        </b-col>
-        <b-col sm="4"></b-col>
-        <b-col sm="2">
+        <b-col sm="11">
             <b-button
                 size="sm"
                 variant="primary"
-                style="margin-bottom:5px;"
+                style="margin-bottom:5px;float:right;"
                 v-on:click="showModal(null,'new')"
             >New Account</b-button>
         </b-col>
+        <b-col sm="1"/>
         </b-row>
-        <center>
-            <table width="50%" class="table table-striped">
+        <b-row>
+        <b-col sm="1"/>
+        <b-col>
+            <table width="50%" class="table table-striped" >
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -38,6 +38,8 @@
                 </tr>
                 </tbody>
             </table>
+        </b-col>
+        <b-col sm="1"/>
         </center>
         <modalModifyAccount 
             ref="modifyModal"
