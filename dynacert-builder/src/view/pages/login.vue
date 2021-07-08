@@ -10,17 +10,21 @@
     class="mb-1 center"
   >
     <b-card-text>
-      <b-alert show variant="danger" v-if="error!=null">{{error}}</b-alert>
-      <b-input placeholder="username" v-model="username"/>
+      <b-alert :show="showError" 
+        variant="danger"  
+        size="sm" 
+        style="text-transform: uppercase;text-align: center;"
+        >{{error}}</b-alert>
+      <b-input placeholder="username" v-model="username" v-on:keyup.enter="auth()"/>
       <b-input-group class="mt-3">
           <template #append>
             <b-button variant="outline-secondary" style="font-size:10px;border:1px solid #ced4da;" v-on:click="showPassword=!showPassword"><b-icon :icon="(showPassword==true)?'eye-slash':'eye'"/></b-button>
           </template>
-          <b-form-input placeholder="password" v-model="password" style="" :type="(showPassword==true)?'text':'password'"></b-form-input>
+          <b-form-input placeholder="password" v-model="password" style="" :type="(showPassword==true)?'text':'password'" v-on:keyup.enter="auth()" ></b-form-input>
       </b-input-group>
     </b-card-text>
 
-    <b-button variant="primary" class="loginbutton" v-on:click="auth()" size="sm">Log In</b-button>
+    <b-button variant="primary" class="loginbutton" v-on:click="auth()" size="sm" style="float:right">Log In</b-button>
   </b-card>
 </div>
 </template>
@@ -45,6 +49,7 @@ export default {
             password: null,
             status: 'not_accepted',
             error: null,
+            showError:false,
             showPassword: false,
         }
     },
@@ -53,6 +58,7 @@ export default {
     methods: {
         auth() {
             this.error=null
+            this.showError=false
             axios
             .post(this.config.serviceBaseUrl +  this.config.url.login,{
                             username: this.username,
@@ -66,6 +72,7 @@ export default {
                     })
                     .catch (e=> {
                                 this.error='Credential error';
+                                this.showError=true
                                 this.$isAuthenticated.value=false
                                 console.log(e)
                     })
