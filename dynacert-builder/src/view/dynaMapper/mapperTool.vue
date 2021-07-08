@@ -205,40 +205,6 @@ export default {
                 await page.render(renderContext).promise
                 this.pdfBackground.push(canvas.toDataURL(type, quality))
         },
-        convert() {
-                var url = 'pdf/example2.pdf';
-                var loadingTask = pdfjsLib.getDocument(url);
-                loadingTask.promise.then(function(pdf) {
-                //
-                // Fetch the first page
-                //
-                    console.log(pdf)
-                    pdf.getPage(1).then(function(page) {
-                    //var decoder = new TextDecoder('utf8');
-                    //var b64encoded = btoa(decoder.decode(page));
-                    //console.log(b64encoded)
-                    var scale = 1.0;
-                    var viewport = page.getViewport({ scale: scale, });
-
-                    //
-                    // Prepare canvas using PDF page dimensions
-                    //
-                    var canvas = document.getElementById('the-canvas');
-                    var context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-
-                    //
-                    // Render PDF page into canvas context
-                    //
-                        var renderContext = {
-                            canvasContext: context,
-                            viewport: viewport,
-                        };
-                        page.render(renderContext);
-                    });   
-                });
-        },     
         showData(obj) {
             console.log(obj)
         },
@@ -299,8 +265,17 @@ export default {
                 if (response.data.map.pages)  {
                     this.configPagesPdf=response.data.map.pages
                 }
+                
                 //if (response.data.status)
-                    this.$emit('changeConfig',this.formMap)                
+                if (this.formMap != []) {
+                    this.$emit('changeConfig',this.formMap) 
+
+                    if (this.pdfBackground.length>0)  {
+                        setTimeout(function () { 
+                            this.active(0)
+                        }.bind(this), 100)
+                    }  
+                }            
                 })
                 .catch(e => {
                     this.dynaLogout(this)
