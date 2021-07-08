@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-card
-    title="Dyna Login"
+    title=""
     img-src="images/logo.png"
     img-alt="Image"
     img-top
@@ -12,10 +12,15 @@
     <b-card-text>
       <b-alert show variant="danger" v-if="error!=null">{{error}}</b-alert>
       <b-input placeholder="username" v-model="username"/>
-      <b-input placeholder="password" v-model="password" style="margin-top:10px" type="password"/>
+      <b-input-group class="mt-3">
+          <template #append>
+            <b-button variant="outline-secondary" style="font-size:10px;border:1px solid #ced4da;" v-on:click="showPassword=!showPassword"><b-icon :icon="(showPassword==true)?'eye-slash':'eye'"/></b-button>
+          </template>
+          <b-form-input placeholder="password" v-model="password" style="" :type="(showPassword==true)?'text':'password'"></b-form-input>
+      </b-input-group>
     </b-card-text>
 
-    <b-button variant="primary" class="loginbutton" v-on:click="auth()">Login</b-button>
+    <b-button variant="primary" class="loginbutton" v-on:click="auth()" size="sm">Log In</b-button>
   </b-card>
 </div>
 </template>
@@ -32,6 +37,7 @@
 </style>
 <script>
 import axios from 'axios'
+
 export default {
     data() {
         return {
@@ -39,6 +45,7 @@ export default {
             password: null,
             status: 'not_accepted',
             error: null,
+            showPassword: false,
         }
     },
     created() {
