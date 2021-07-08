@@ -26,7 +26,7 @@
         Form
             </b-col>
             <b-col>
-                <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" >
+                <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" v-model="eventIdSelected">
                     <option value="null">--- select a form --- </option>
                     <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
                 </select>
@@ -124,6 +124,9 @@ import axios from 'axios'
 
 export default {
     name:"formMapper",
+    props: [
+        "listForms"
+    ],
     data() {
         return {
             files:[],
@@ -136,7 +139,6 @@ export default {
             sign: [],
             today: [],
             signDescriptions: {},
-            listForms:[],
             titleSign:null,
             textSign: null,
             showSignForm: false,
@@ -150,7 +152,6 @@ export default {
     created() {
         console.log('formMapper')
         console.log(this.form)
-        this.getListForms()
     },
     watch: {
         files () {
@@ -242,19 +243,6 @@ export default {
         convertBase64(text) {
         return decodeURIComponent(escape(window.atob(text)));
         },
-        getListForms () {
-                serverBus.$emit('showLoader',true)
-                axios
-                    .get(this.config.serviceBaseUrl + this.config.url.listForms)
-                    .then(response => {
-                        serverBus.$emit('showLoader',false)
-                        this.listForms = response.data.response
-                    })
-                    .catch(e => {
-                        this.dynaLogout(this)
-                        this.error = e;
-                })
-        },
         saveConfig() {
             if (this.$refs.pdfMapper) this.$refs.pdfMapper.getSelection()
             console.log('saveMapper' + this.eventIdSelected)
@@ -282,7 +270,8 @@ export default {
                     this.activeImage=null
                     this.page=null
                     this.form=JSON.parse(response.data.form)
-                    this.getMap(event.target.value)         
+                    this.getMap(event.target.value)      
+                    this.eventIdSelected=event.target.value   
                 })
                 .catch(e => {
                     this.dynaLogout(this)
