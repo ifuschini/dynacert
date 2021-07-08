@@ -14,9 +14,9 @@
 
                     </b-card-text>
                 </b-card>
-                <b-card>
+                <b-card style="margin-top:10px">
                     <template #header>
-                                <strong>Create Form --{{idSelected}}--</strong>
+                                <strong>Create Form</strong>
                                             
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="success" v-on:click="submitlocalForm('new')"><b-icon icon="check-circle"/> Submit new Form</b-button>
                                             <b-button type="submit" size="sm" style="float:right;margin-right: 5px;" variant="primary" v-if="idSelected != null" v-on:click="submitlocalForm('update')"><b-icon icon="arrow-clockwise"/> Update Form</b-button>
@@ -70,21 +70,12 @@
                 </b-row>
                 <b-row>
                     <b-col >
-                    <b-card>
-                    <template #header>
+                    <b-card style="margin-top:10px">
+                    <template #header >
                             <b-row>
                             <b-col>
                                 <strong>Insert new "{{typeSelected}}"</strong> 
                             </b-col>
-                            <!--b-col v-if="objectFeature.typeOfContent==true">
-                            Type Of Content
-                                <b-select style="float:right"
-                                v-model="typeOfContent" 
-                                :options="optionsTypeOfContent" 
-                                size="sm" 
-                                class="mt-3"
-                                />
-                            </b-col-->
                             </b-row>
                     </template>
                         <b-card-text>
