@@ -40,6 +40,7 @@
             </table>
         </b-col>
         <b-col sm="1"/>
+        </b-row>
         </center>
         <modalModifyAccount 
             ref="modifyModal"
