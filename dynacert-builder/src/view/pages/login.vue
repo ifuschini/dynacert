@@ -45,8 +45,8 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            username: null,
-            password: null,
+            username: '',
+            password: '',
             status: 'not_accepted',
             error: null,
             showError:false,
@@ -57,6 +57,16 @@ export default {
     },
     methods: {
         auth() {
+            if (this.username=='') {
+                this.error='username is empty'
+                this.showError=true
+                return false
+            }
+            if (this.password=='') {
+                this.error='password is empty'
+                this.showError=true
+                return false
+            }
             this.error=null
             this.showError=false
             axios
