@@ -27,8 +27,7 @@
             </b-col>
             <b-col>
                 <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" v-model="eventIdSelected">
-                    <option value="null">--- select a form --- </option>
-                    <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
+                   <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
                 </select>
             </b-col>
         </b-row>
@@ -167,6 +166,9 @@ export default {
                     this.convertBlobToImage64(this.files[0].file,true)
             }
         },
+        formMap() {
+            this.$emit('changeConfig',this.formMap)     
+        }
 
     },
     methods: {
@@ -297,7 +299,7 @@ export default {
                 if (response.data.map.pages)  {
                     this.configPagesPdf=response.data.map.pages
                 }
-                if (response.data.status)
+                //if (response.data.status)
                     this.$emit('changeConfig',this.formMap)                
                 })
                 .catch(e => {

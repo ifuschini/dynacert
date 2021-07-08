@@ -109,6 +109,7 @@ export default {
         },
         onChangeJson(e) {
             console.log('onChangeJson')
+            this.configPagesPdf=e
         },
         getListForms () {
                 serverBus.$emit('showLoader',true)

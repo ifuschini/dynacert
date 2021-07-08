@@ -219,7 +219,7 @@ export default {
             this.rectangles[pos].x=parseInt(e.target.attrs.x)
             this.rectangles[pos].y=parseInt(e.target.attrs.y)
             console.log(objToSend)
-            
+            this.$emit('getSelections',this.rectangles)
           }
         },
         handleTransformEnd(e) {
