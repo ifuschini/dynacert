@@ -24,14 +24,14 @@
             </b-col>
         </b-row>
         </b-tab>
-        <b-tab  @click.capture="changeTab(1)" title="Preview">
+        <b-tab  @click.capture="changeTab(1)" title="Preview" :disabled="form.length==0">
             <formPreview
                 ref="preview"
                 :form="form"
             />
 
         </b-tab>
-        <b-tab title="Json Editor" @click.capture="changeTab(2)">
+        <b-tab title="Json Editor" @click.capture="changeTab(2)" :disabled="form.length==0">
             <json-editor ref="editor" 
                                     style="height:800px" 
                                     :onChange="onChangeJson" 
