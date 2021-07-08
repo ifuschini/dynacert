@@ -30,7 +30,7 @@
 	padding: 0;
 	margin: 0;
 	height: 100vh;
-	width:100vw;
+	width:0vw;
 	display:flex;
 	align-items: center;
 	justify-content: center;
@@ -40,6 +40,7 @@
 @media only screen and (max-width: 600px) {
   .bodyDyna {
     visibility:visible;
+  	width:100vw;
   }
 }
 </style>
