@@ -1,5 +1,5 @@
 <template>
-    <div :class="'d-flex' + toggle" id="wrapper">
+    <div :class="'d-flex' + toggle" id="wrapper" style="overflow: hidden;max-height:100vh;">
               <sidebar/>
             <div id="page-content-wrapper">
               <headerComponent/>
