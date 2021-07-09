@@ -1,9 +1,10 @@
 <template>   
 <div> 
-        <b-tabs ref="tabs" >
+        <b-tabs ref="tabs"  style="height:90vh" >
         <b-tab  title="Form Builder" @click.capture="changeTab(0)" active>
             <b-row>
             <b-col sm="6">
+                <div class="scroll-area90">
                 <formMaker
                     ref="formMaker"
                     v-on:loadSavedQuestion="loadSavedQuestion"
@@ -12,9 +13,10 @@
                     v-on:clearForm="clearForm"
                     style="height: 100vh;"
                 />
+                </div>
             </b-col>
             <b-col sm="6" >
-                <div class="scroll-area">
+                <div class="scroll-area90">
                 <!-- show form -->
                         <formListComponents 
                             :form="form"
@@ -43,14 +45,6 @@
     </b-tabs>
 </div>
 </template>
-<style scoped>
-.scroll-area{
-  width:100%;
-  height:100vh;
-  float:left;
-  overflow-y:scroll;
-}
-</style>
 
 <script>
 import JsonEditor from '../components/JsonEditor'
