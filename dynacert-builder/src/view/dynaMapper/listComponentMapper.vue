@@ -1,5 +1,5 @@
 <template>
-        <div class="scroll-area">
+        <div>
             <div v-for="(question,index) in localForm" v-bind:key="index">
                 <div class="title-question" v-if="question.obj.type !='note'" v-on:click="setField(index)" :style="question.backGroundColor" @contextmenu.prevent="$refs.menu.open($event,index)">
                     {{question.obj.title}} <span v-if="question.concatenate==true" class="concatenate">Concatenated</span>
@@ -48,12 +48,6 @@
     margin-top: 5px;
     border-color: #ced4da;
     border-width: 1px;
-}
-.scroll-area{
-  width:100%;
-  height:100vh;
-  float:left;
-  overflow-y:scroll;
 }
 .concatenate {
     font-size:0.5rem;
