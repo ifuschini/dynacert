@@ -23,10 +23,10 @@
                     v-on:getListForm="getListForm"
                     :listForms="listForms"
                     style="height: 80vh;"
-
+                    
                 />
             </b-tab>
-            <b-tab title="Json Editor" @click.capture="changeTab(1)">
+            <b-tab title="Json Editor" @click.capture="changeTab(1)" :disabled="selectedForm==null">
                 <json-editor ref="editor" 
                     style="height:800px" 
                     :onChange="onChangeJson" 
@@ -66,7 +66,6 @@
     font-size: 2rem;
     color:white;
 }
-
 </style>
 
 <script>
