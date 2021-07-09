@@ -98,6 +98,10 @@ http://localhost/builder
 
 https://dyna-cert.org/builder/
 
+#### Display Resolution
+
+Minimum 1920x1080 (1080p)
+
 ​		
 
 ### Dyna-cert viewer
