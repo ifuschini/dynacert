@@ -152,6 +152,7 @@ export default {
                         };
 
               this.rectangles.push(rect)
+              this.$emit('getSelections',this.rectangles)
           } else {
             this.rectangles[pos].stroke='red'
           }
