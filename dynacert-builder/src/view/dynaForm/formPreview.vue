@@ -1,12 +1,16 @@
 <template>
-<div>
-    <!--div  v-for="(question,index) in form" v-bind:key="index" style="align-content: left;"-->
-            <b-row >
-                <b-col lg="6" v-for="(question,index) in form" v-bind:key="index">
-                <showSingleQuestion 
+<div class="scroll-area2">
+    <!-- div  v-for="(question,index) in form" v-bind:key="index" style="align-content: left;" -->
+            <b-row>
+                <!--b-col v-for="(question,index) in form" v-bind:key="index"-->
+                <b-col>
+                            <showFormAll 
+        :form="form" />
+
+                <!--showSingleQuestion 
                     :question="question"
                     :index="index"
-                />            
+                /-->            
                 </b-col>
             </b-row>
     <!--/div-->
@@ -14,11 +18,9 @@
 </div>
     
 </template>
-<style scoped>
-
-</style>
 <script>
 import showSingleQuestion from './showSingleQuestion'
+import  showFormAll from './showFormAll'
 
 export default {
     name: 'formPreview',
@@ -38,6 +40,7 @@ export default {
     methods: {
     },
     components: {
+        showFormAll,
         showSingleQuestion
     }
 
