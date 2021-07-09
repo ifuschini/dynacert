@@ -2,29 +2,27 @@
   <div>
     <b-row> 
         <b-col>
-            {{numPages}}
-            <pdf 
-                style="width:1px;height:1px"
-                ref="myPdfComponent"
-                :src="src"
-                :page="key"
-            ></pdf>        
+            <div class="scroll-area2">
+                <pdf 
+                    style="width:1px;height:1px"
+                    ref="myPdfComponent"
+                    :src="src"
+                    :page="key"
+                ></pdf>        
 
-        <formImageMapper
-        ref="pdfMapper"
-        :imageToLoad="activeImage"
-        :lengthForm="form.length"
-        :numberOfPage="page"
-        v-if="activeImage != null"
-        v-on:indexSelected="indexSelected"
-        v-on:getSelections="generate"
-        />
+            <formImageMapper
+            ref="pdfMapper"
+            :imageToLoad="activeImage"
+            :lengthForm="form.length"
+            :numberOfPage="page"
+            v-if="activeImage != null"
+            v-on:indexSelected="indexSelected"
+            v-on:getSelections="generate"
+            />
+            </div>
         </b-col>
         <b-col lg="5">
         <b-row>
-        <b-col lg="1" class="componentMapperTool">
-        Form
-            </b-col>
             <b-col>
                 <select class="form-control" style="margin-bottom:5px;" @change="getForm($event)" v-model="eventIdSelected">
                    <option v-for="(form,index) in listForms" v-bind:key="index" :value="form.id">{{form.title}}</option>
@@ -52,25 +50,33 @@
                 <b-button variant="secondary" v-on:click="showSignForm=true;textSign=null;titleSign=null;" size="sm" style="float:close;margin-top:5px;">Cancel</b-button>
                 <b-button variant="warning" v-on:click="addDynaElement('sign')" size="sm" style="float:right;margin-top:5px;">Add Sign</b-button>
             </b-card>
-            <listComponentMapper
-            ref="listComponent"
-            :form="form"
-            :canSelect="activeImage != null"
-            v-on:setField="setField"
-            style="margin-top:5px;"
-            />
+            <div class="scroll-area">
+                <div>
+                <listComponentMapper
+                ref="listComponent"
+                :form="form"
+                :canSelect="activeImage != null"
+                v-on:setField="setField"
+                style="margin-top:5px;"
+                />
+                </div>
+                <div style="min-height:20px;"></div>
+            </div>
         </b-row>
         </b-col>
         <b-col lg="2" >
 
-                <div v-if="eventIdSelected!=null">
+                <div v-if="eventIdSelected!=null" class="scroll-area">
+                    <center>
                     <div v-for="(file,index) in pdfBackground" v-bind:key="index"  >
+                        Page {{index + 1}}
                         <div class="documento" v-on:click="active(index)" :style="getStyle(index)">
-                            <img :src="file" :class="page==index?'fileImage-selected' : 'fileImage'" v-if="file != null" />
+                            <img :src="file" :class="page==index?'fileImage-selected' : 'fileImage'"  v-if="file != null" />
                             <div class="preview" v-if="file == null"/>
                         </div>
-                            <span v-on:click='deleteItem(index)' v-if="file != null" style="cursor:pointer">Delete</span>
+                            <b-button variant="secondary" size="sm" v-on:click='deleteItem(index)' v-if="file != null" style="cursor:pointer">Delete</b-button> 
                     </div>
+                    </center>
                     <fileUpload
                             class="btn btn-info btn-sm"
                             :multiple="false"
@@ -84,6 +90,7 @@
                             <!--i class="fa fa-plus"></i-->
                             File Upload
                     </fileUpload>
+                    <div style="min-height:20px;"></div>
                 </div>
         
         </b-col>
@@ -155,13 +162,7 @@ export default {
     watch: {
         files () {
             if (this.files[0].file.type !='application/pdf') {
-
-                if (this.files[0].file.size < this.maxSizeImage  * 1024) {
-                    this.setImage(this.files[0].blob)
-                } else {
-                    this.handleImageUpload(this.files[0].file)
-                        //this.messageError='Attenzione l\'immagine risulta troppo grande'
-                }  
+                this.handleImageUpload(this.files[0].file)
             } else {
                     this.convertBlobToImage64(this.files[0].file,true)
             }
@@ -204,6 +205,7 @@ export default {
                 // @ts-ignore
                 await page.render(renderContext).promise
                 this.pdfBackground.push(canvas.toDataURL(type, quality))
+                if (this.$refs.pdfMapper) this.$refs.pdfMapper.getSelection()
         },
         showData(obj) {
             console.log(obj)
@@ -366,17 +368,28 @@ export default {
         },
         assignImageToArray(img) {
                 this.pdfBackground.push(img)
+                if (this.$refs.pdfMapper) this.$refs.pdfMapper.getSelection()
                 this.$forceUpdate
         },
         deleteItem (index) {
             console.log("delete:" + index)
+            let deleteThisItem=confirm("Confirm to delete these page ?")
+            if (deleteThisItem==false) return false
             this.pdfBackground.splice(index,1)
-            localStorage.pdfBackground=JSON.stringify(this.pdfBackground)
+            this.configPagesPdf.splice(index,1)
+            if (this.configPagesPdf.length==0) {
+                this.configPagesPdf=[]
+                this.pdfBackground=[]
+                this.activeImage=null
+            } else {
+                if (this.page==index) this.active(0,true)
+                else if (this.page > index) this.active(this.page - 1,true) 
+            }
         },
-        active(index) {
+        active(index,isDelete=false) {
             console.log('active page:' + index)
             if (this.page==index) return false
-            if (this.isChange==true) {
+            if (this.isChange==true && isDelete==false) {
                 let save=confirm("If you change the page you lost your modification, do you want to continue ?")
                 if (save==false) return false
             }
